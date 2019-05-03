@@ -6,7 +6,7 @@ body {
     height: 100vh;
     .card {
       &_main {
-        width: 80%;
+        width: 90%;
         max-height: 300px;
         max-width: 1000px;
         background: #fafafa;
@@ -21,13 +21,13 @@ body {
           width: 100%;
           border-radius: 10px 10px 0 0;
           &_left {
-            flex-basis: 20%;
+            flex-basis: 30%;
             display: flex;
             justify-content: center;
             align-items: center;
           }
           &_center {
-            flex-basis: 60%;
+            flex-basis: 50%;
             display: flex;
             flex-direction: column;
             justify-content: left;
@@ -90,7 +90,7 @@ body {
         }
       }
       &_sub {
-        width: 80%;
+        width: 90%;
         max-height: 300px;
         max-width: 1000px;
         background: #455a64;
@@ -99,14 +99,14 @@ body {
         position: relative;
         display: flex;
         &_left {
-          flex-basis: 20%;
+          flex-basis: 30%;
           display: flex;
           justify-content: center;
           align-items: center;
           padding: 1em 0;
         }
         &_right {
-          flex-basis: 80%;
+          flex-basis: 70%;
           h4 {
             margin: 15px 0 5px;
           }
@@ -125,13 +125,13 @@ body {
             flex-direction: row;
             padding: 0.5em 0 0 0;
             &_left {
-              flex-basis: 20%;
+              flex-basis: 30%;
               display: flex;
               justify-content: center;
               align-items: center;
             }
             &_right {
-              flex-basis: 80%;
+              flex-basis: 70%;
               h4 {
                 margin: 15px 0 5px;
               }
@@ -147,13 +147,13 @@ body {
             flex-direction: row;
             background: #eab96e;
             &_left {
-              flex-basis: 20%;
+              flex-basis: 30%;
               display: flex;
               justify-content: center;
               align-items: center;
             }
             &_right {
-              flex-basis: 80%;
+              flex-basis: 70%;
               h4 {
                 margin: 15px 0 5px;
               }
@@ -169,13 +169,13 @@ body {
             flex-direction: row;
             background: #e1b26a;
             &_left {
-              flex-basis: 20%;
+              flex-basis: 30%;
               display: flex;
               justify-content: center;
               align-items: center;
             }
             &_right {
-              flex-basis: 80%;
+              flex-basis: 70%;
               h4 {
                 margin: 15px 0 5px;
               }
@@ -191,13 +191,13 @@ body {
             flex-direction: row;
             background: #eab96e;
             &_left {
-              flex-basis: 20%;
+              flex-basis: 30%;
               display: flex;
               justify-content: center;
               align-items: center;
             }
             &_right {
-              flex-basis: 80%;
+              flex-basis: 70%;
               h4 {
                 margin: 15px 0 5px;
               }
@@ -214,7 +214,7 @@ body {
         background: #1b1b1b;
         border-radius: 50%;
         padding: 5px;
-        left: 8.5%;
+        left: 10%;
         top: 0;
         transform: translate(0%, -50%);
         z-index: 1;
@@ -224,26 +224,26 @@ body {
         background: #1b1b1b;
         border-radius: 50%;
         padding: 5px;
-        left: 8.5%;
+        left: 10%;
         bottom: 0;
         transform: translate(0%, 50%);
         z-index: 1;
       }
     }
     .nonCard {
-      width: 80%;
+      width: 90%;
       max-height: 300px;
       max-width: 1000px;
       margin: auto;
       border-radius: 10px;
       display: flex;
       &_left {
-        flex-basis: 20%;
+        flex-basis: 30%;
         position: relative;
         .line {
           &_1 {
             position: absolute;
-            left: 42.5%;
+            left: 33.5%;
             top: 0;
             transform: rotate(90deg);
             transform-origin: 47% 40%;
@@ -251,7 +251,7 @@ body {
           }
           &_2 {
             position: absolute;
-            left: 42.5%;
+            left: 33.5%;
             top: 22px;
             transform: rotate(90deg);
             transform-origin: 47% 40%;
@@ -259,7 +259,7 @@ body {
           }
           &_3 {
             position: absolute;
-            left: 42.5%;
+            left: 33.5%;
             top: 43px;
             transform: rotate(90deg);
             transform-origin: 47% 40%;
@@ -267,7 +267,7 @@ body {
           }
           &_4 {
             position: absolute;
-            left: 42.5%;
+            left: 33.5%;
             top: 65px;
             transform: rotate(90deg);
             transform-origin: 47% 40%;
@@ -276,7 +276,7 @@ body {
         }
       }
       &_right {
-        flex-basis: 80%;
+        flex-basis: 70%;
         display: flex;
         flex-direction: column;
 

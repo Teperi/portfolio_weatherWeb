@@ -1,0 +1,15 @@
+body {
+  background: #1b1b1b;
+  overflow: auto;
+  .list {
+    display: grid;
+    grid-auto-rows: minmax(100px, 300px);
+    grid-gap: 50px;
+    width: 90vw;
+    height: 90vh;
+    margin: 1em auto;
+    &_card {
+      background: #fafafa;
+    }
+  }
+}
