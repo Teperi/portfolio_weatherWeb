@@ -1,15 +1,108 @@
+@font-face {
+  font-family: 'SeoulNamsanM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$breakpoints: (
+  'small': (
+    max-width: 740px
+  ),
+  'medium': (
+    max-width: 1110px
+  )
+) !default;
+
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
 body {
   background: #1b1b1b;
-  overflow: auto;
+  font-family: 'SeoulNamsanM';
   .list {
     display: grid;
-    grid-auto-rows: minmax(100px, 300px);
-    grid-gap: 50px;
-    width: 90vw;
-    height: 90vh;
-    margin: 1em auto;
+    padding: 64px;
+    grid-gap: 32px;
+    grid-template-columns: auto auto auto;
+    @include respond-to('medium') {
+      grid-template-columns: auto auto;
+    }
+    @include respond-to('small') {
+      grid-template-columns: auto;
+    }
     &_card {
-      background: #fafafa;
+      background: #bbb;
+      height: 160px;
+      overflow: auto;
+      border-radius: 16px;
+      padding: 16px;
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      color: #f1f1f1;
+      @include respond-to('medium') {
+        background: orange;
+      }
+      @include respond-to('small') {
+        background: skyblue;
+      }
+      &_left {
+        flex-basis: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .location {
+          &_title {
+            margin: 16px 0 4px 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+          }
+          &_sub {
+            margin: 0 0 0 8px;
+          }
+        }
+      }
+      &_right {
+        flex-basis: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+
+        .temperature {
+          font-size: 2em;
+          font-weight: 800;
+          margin: 8px 0 0 0;
+        }
+        .time {
+          margin: 40px 8px 0 0;
+        }
+      }
+    }
+    &_card_add {
+      height: 160px;
+      overflow: auto;
+      border-radius: 16px;
+      padding: 16px;
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      border: 4px dashed #f1f1f1;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
