@@ -1,0 +1,299 @@
+@font-face {
+  font-family: 'SeoulNamsanM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.timeline {
+  background: #1b1b1b;
+  overflow: auto;
+  width: 100vw;
+  height: 100vh;
+  .card {
+    &_main {
+      width: 90%;
+      max-height: 300px;
+      max-width: 1000px;
+      background: #fafafa;
+      margin: 10px auto 0 auto;
+      border-radius: 10px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      &_top {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        &_left {
+          flex-basis: 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &_center {
+          flex-basis: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: left;
+          h1 {
+            font-family: 'Do Hyeon', sans-serif;
+            color: #000;
+            font-weight: 400;
+            text-align: left;
+            margin: 10px 0 5px;
+          }
+          p {
+            margin: 5px 0;
+          }
+        }
+        &_right {
+          flex-basis: 20%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 2em;
+            margin: 5px 0;
+          }
+        }
+      }
+      &_bottom {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        background: #f1f1f1;
+        border-radius: 0 0 10px 10px;
+        align-content: center;
+        justify-content: center;
+        padding-bottom: 0.5em;
+        h4 {
+          margin: 0;
+        }
+        p {
+          margin: 10px 0;
+        }
+        &_left {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &_center {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &_right {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    &_sub {
+      width: 90%;
+      max-height: 300px;
+      max-width: 1000px;
+      background: #455a64;
+      margin: 10px auto 0 auto;
+      border-radius: 10px;
+      position: relative;
+      display: flex;
+      &_left {
+        flex-basis: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1em 0;
+      }
+      &_right {
+        flex-basis: 70%;
+        h4 {
+          margin: 15px 0 5px;
+        }
+        p {
+          color: white;
+          margin: 10px 0;
+        }
+      }
+      &_forecast {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        &_1 {
+          display: flex;
+          width: 100%;
+          flex-direction: row;
+          padding: 0.5em 0 0 0;
+          &_left {
+            flex-basis: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &_right {
+            flex-basis: 70%;
+            h4 {
+              margin: 15px 0 5px;
+            }
+            p {
+              color: white;
+              margin: 10px 0;
+            }
+          }
+        }
+        &_2 {
+          display: flex;
+          width: 100%;
+          flex-direction: row;
+          background: #eab96e;
+          &_left {
+            flex-basis: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &_right {
+            flex-basis: 70%;
+            h4 {
+              margin: 15px 0 5px;
+            }
+            p {
+              color: white;
+              margin: 10px 0;
+            }
+          }
+        }
+        &_3 {
+          display: flex;
+          width: 100%;
+          flex-direction: row;
+          background: #e1b26a;
+          &_left {
+            flex-basis: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &_right {
+            flex-basis: 70%;
+            h4 {
+              margin: 15px 0 5px;
+            }
+            p {
+              color: white;
+              margin: 10px 0;
+            }
+          }
+        }
+        &_4 {
+          display: flex;
+          width: 100%;
+          flex-direction: row;
+          background: #eab96e;
+          &_left {
+            flex-basis: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &_right {
+            flex-basis: 70%;
+            h4 {
+              margin: 15px 0 5px;
+            }
+            p {
+              color: white;
+              margin: 10px 0;
+            }
+          }
+        }
+      }
+    }
+    &_topcircle {
+      position: absolute;
+      background: #1b1b1b;
+      border-radius: 50%;
+      padding: 5px;
+      left: 10%;
+      top: 0;
+      transform: translate(0%, -50%);
+      z-index: 1;
+    }
+    &_bottomcircle {
+      position: absolute;
+      background: #1b1b1b;
+      border-radius: 50%;
+      padding: 5px;
+      left: 10%;
+      bottom: 0;
+      transform: translate(0%, 50%);
+      z-index: 1;
+    }
+  }
+  .nonCard {
+    width: 90%;
+    max-height: 300px;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    &_left {
+      flex-basis: 30%;
+      position: relative;
+      .line {
+        &_1 {
+          position: absolute;
+          left: 33.5%;
+          top: 0;
+          transform: rotate(90deg);
+          transform-origin: 47% 40%;
+          z-index: 2;
+        }
+        &_2 {
+          position: absolute;
+          left: 33.5%;
+          top: 22px;
+          transform: rotate(90deg);
+          transform-origin: 47% 40%;
+          z-index: 2;
+        }
+        &_3 {
+          position: absolute;
+          left: 33.5%;
+          top: 43px;
+          transform: rotate(90deg);
+          transform-origin: 47% 40%;
+          z-index: 2;
+        }
+        &_4 {
+          position: absolute;
+          left: 33.5%;
+          top: 65px;
+          transform: rotate(90deg);
+          transform-origin: 47% 40%;
+          z-index: 2;
+        }
+      }
+    }
+    &_right {
+      flex-basis: 70%;
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        margin: 15px 0 5px;
+      }
+      p {
+        color: white;
+        margin: 10px 0;
+      }
+    }
+  }
+}

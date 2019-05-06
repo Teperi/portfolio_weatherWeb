@@ -11,21 +11,23 @@ export default class Home extends Component {
   render() {
     return (
       <div className='list'>
-        <div className='list_card'>
-          <div className='list_card_left'>
-            <IconContext.Provider value={{ size: '3.5em' }}>
-              <WiSnow />
-            </IconContext.Provider>
-            <p className='location_title'>York</p>
-            <p className='location_sub'>Current Location</p>
+        <a href='/forecast'>
+          <div className='list_card'>
+            <div className='list_card_left'>
+              <IconContext.Provider value={{ size: '3.5em' }}>
+                <WiSnow />
+              </IconContext.Provider>
+              <p className='location_title'>York</p>
+              <p className='location_sub'>Current Location</p>
+            </div>
+            <div className='list_card_right'>
+              <p className='temperature'>
+                4<WiCelsius />
+              </p>
+              <p className='time'>16:11</p>
+            </div>
           </div>
-          <div className='list_card_right'>
-            <p className='temperature'>
-              4<WiCelsius />
-            </p>
-            <p className='time'>16:11</p>
-          </div>
-        </div>
+        </a>
 
         <div className='list_card'>
           <div className='list_card_left'>

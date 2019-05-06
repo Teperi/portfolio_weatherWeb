@@ -1,108 +1,78 @@
-@font-face {
-  font-family: 'SeoulNamsanM';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@import 'css/responsiveGrid.scss';
 
-$breakpoints: (
-  'small': (
-    max-width: 740px
-  ),
-  'medium': (
-    max-width: 1110px
-  )
-) !default;
-
-@mixin respond-to($breakpoint) {
-  // If the key exists in the map
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Prints a media query based on the value
-    @media #{inspect(map-get($breakpoints, $breakpoint))} {
-      @content;
-    }
+.list {
+  display: grid;
+  padding: 64px;
+  grid-gap: 32px;
+  grid-template-columns: auto auto auto;
+  @include respond-to('medium') {
+    grid-template-columns: auto auto;
   }
-  // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  @include respond-to('small') {
+    grid-template-columns: auto;
   }
-}
-body {
-  background: #1b1b1b;
-  font-family: 'SeoulNamsanM';
-  .list {
-    display: grid;
-    padding: 64px;
-    grid-gap: 32px;
-    grid-template-columns: auto auto auto;
+  a {
+    text-decoration: none;
+  }
+  &_card {
+    background: #bbb;
+    height: 160px;
+    overflow: auto;
+    border-radius: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    color: #f1f1f1;
     @include respond-to('medium') {
-      grid-template-columns: auto auto;
+      background: orange;
     }
     @include respond-to('small') {
-      grid-template-columns: auto;
+      background: skyblue;
     }
-    &_card {
-      background: #bbb;
-      height: 160px;
-      overflow: auto;
-      border-radius: 16px;
-      padding: 16px;
-      box-sizing: border-box;
+    &_left {
+      flex-basis: 70%;
+      height: 100%;
       display: flex;
-      width: 100%;
-      color: #f1f1f1;
-      @include respond-to('medium') {
-        background: orange;
-      }
-      @include respond-to('small') {
-        background: skyblue;
-      }
-      &_left {
-        flex-basis: 70%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        .location {
-          &_title {
-            margin: 16px 0 4px 8px;
-            font-size: 1.2em;
-            font-weight: 600;
-          }
-          &_sub {
-            margin: 0 0 0 8px;
-          }
+      flex-direction: column;
+      .location {
+        &_title {
+          margin: 16px 0 4px 8px;
+          font-size: 1.2em;
+          font-weight: 600;
+        }
+        &_sub {
+          margin: 0 0 0 8px;
         }
       }
-      &_right {
-        flex-basis: 30%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        text-align: right;
+    }
+    &_right {
+      flex-basis: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
 
-        .temperature {
-          font-size: 2em;
-          font-weight: 800;
-          margin: 8px 0 0 0;
-        }
-        .time {
-          margin: 40px 8px 0 0;
-        }
+      .temperature {
+        font-size: 2em;
+        font-weight: 800;
+        margin: 8px 0 0 0;
+      }
+      .time {
+        margin: 40px 8px 0 0;
       }
     }
-    &_card_add {
-      height: 160px;
-      overflow: auto;
-      border-radius: 16px;
-      padding: 16px;
-      box-sizing: border-box;
-      display: flex;
-      width: 100%;
-      border: 4px dashed #f1f1f1;
-      justify-content: center;
-      align-items: center;
-    }
+  }
+  &_card_add {
+    height: 160px;
+    overflow: auto;
+    border-radius: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    border: 4px dashed #f1f1f1;
+    justify-content: center;
+    align-items: center;
   }
 }
