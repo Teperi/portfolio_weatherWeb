@@ -7,9 +7,13 @@
   grid-template-columns: auto auto auto;
   @include respond-to('medium') {
     grid-template-columns: auto auto;
+    padding: 32px;
+    grid-gap: 16px;
   }
   @include respond-to('small') {
     grid-template-columns: auto;
+    padding: 16px;
+    grid-gap: 8px;
   }
   a {
     text-decoration: none;
