@@ -2,70 +2,21 @@
 
 .list {
   display: grid;
-  padding: 64px;
+  padding: 16px 64px;
   grid-gap: 32px;
   grid-template-columns: auto auto auto;
   @include respond-to('medium') {
     grid-template-columns: auto auto;
-    padding: 32px;
-    grid-gap: 16px;
+    padding: 16px 32px;
+    grid-gap: 32px 16px;
   }
   @include respond-to('small') {
     grid-template-columns: auto;
     padding: 16px;
-    grid-gap: 8px;
+    grid-gap: 32px;
   }
   a {
     text-decoration: none;
-  }
-  &_card {
-    background: #bbb;
-    height: 160px;
-    overflow: auto;
-    border-radius: 16px;
-    padding: 16px;
-    box-sizing: border-box;
-    display: flex;
-    width: 100%;
-    color: #f1f1f1;
-    @include respond-to('medium') {
-      background: orange;
-    }
-    @include respond-to('small') {
-      background: skyblue;
-    }
-    &_left {
-      flex-basis: 70%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      .location {
-        &_title {
-          margin: 16px 0 4px 8px;
-          font-size: 1.2em;
-          font-weight: 600;
-        }
-        &_sub {
-          margin: 0 0 0 8px;
-        }
-      }
-    }
-    &_right {
-      flex-basis: 30%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      text-align: right;
-
-      .temperature {
-        font-size: 2em;
-        font-weight: 800;
-        margin: 8px 0 0 0;
-      }
-      .time {
-        margin: 40px 8px 0 0;
-      }
-    }
   }
   &_card_add {
     height: 160px;
