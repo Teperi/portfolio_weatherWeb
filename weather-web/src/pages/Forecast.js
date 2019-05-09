@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons';
 import { WiSnow, WiDaySunny } from 'react-icons/wi';
 import { FaCircle } from 'react-icons/fa';
 
-import 'pages/Forecast.scss';
+import './Forecast.scss';
 
 export default class Forecast extends Component {
   constructor(props) {
