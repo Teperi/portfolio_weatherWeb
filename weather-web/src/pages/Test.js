@@ -12,6 +12,7 @@ export default class Test extends Component {
     navigator.geolocation.getCurrentPosition(
       position => {
         this._getWeatherJson(position.coords.latitude, position.coords.longitude);
+        this._coordsToAddr(position.coords.latitude, position.coords.longitude);
       },
       error => {
         this.setState({
@@ -21,15 +22,23 @@ export default class Test extends Component {
     );
   }
 
+  _coordsToAddr = (lat,lon) => {
+    fetch(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lon}&y=${lat}`, {
+      headers: {
+        "Authorization": "KakaoAK 87fbfced5e60485e49838e6f25b99861"
+      }
+    })
+    .then(response => response.json())
+    .then(json => {console.log(json);})
+  }
+
   _getWeatherJson = (lat, lon) => {
-    console.log('a : ' + lat);
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}`)
       .then(response => response.json())
       .then(json => {console.log(json);
       this.setState({
         isLoaded:true
       })});
-
   };
 
   render() {
