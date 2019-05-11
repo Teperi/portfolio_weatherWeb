@@ -13,7 +13,7 @@ function WeatherTypes(props) {
     return <WiSnow />;
   }
 }
-
+// TODO: constructor 사용시 문제점 확인
 export default class PlaceCard extends Component {
   constructor(props) {
     super(props);

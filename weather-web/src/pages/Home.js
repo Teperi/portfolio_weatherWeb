@@ -22,6 +22,42 @@ export default class Home extends Component {
           <PlacesCard
             locationTitle='서울'
             locationSub='대한민국'
+            weatherType='눈'
+            temperature='15'
+            time='14:41'
+          />
+        </NavLink>
+        <NavLink to='/forecast/61/126' className='item'>
+          <PlacesCard
+            locationTitle='서울'
+            locationSub='대한민국'
+            weatherType='맑음'
+            temperature='15'
+            time='14:41'
+          />
+        </NavLink>
+        <NavLink to='/forecast/61/126' className='item'>
+          <PlacesCard
+            locationTitle='서울'
+            locationSub='대한민국'
+            weatherType='맑음'
+            temperature='15'
+            time='14:41'
+          />
+        </NavLink>
+        <NavLink to='/forecast/61/126' className='item'>
+          <PlacesCard
+            locationTitle='서울'
+            locationSub='대한민국'
+            weatherType='맑음'
+            temperature='15'
+            time='14:41'
+          />
+        </NavLink>
+        <NavLink to='/forecast/61/126' className='item'>
+          <PlacesCard
+            locationTitle='서울'
+            locationSub='대한민국'
             weatherType='맑음'
             temperature='15'
             time='14:41'
