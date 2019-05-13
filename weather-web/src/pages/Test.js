@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import changeWCCode from '../functions/changeWeatherConditionCode';
 
-const WEATHER_API_KEY = '59c393b03e080c261debf8f17784f0c4';
-const KAKAO_API_KEY = '87fbfced5e60485e49838e6f25b99861';
+const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
 
 export default class Test extends Component {
   state = {

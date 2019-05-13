@@ -3,7 +3,7 @@
 ## 2019.04.30
 
 - 설치작업 진행
-  - create-react-app 
+  - create-react-app
   - react-router-dom
   - react-icons
   - node-sass
