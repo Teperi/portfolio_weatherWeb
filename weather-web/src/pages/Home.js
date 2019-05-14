@@ -8,12 +8,13 @@ import { IconContext } from 'react-icons';
 import { FaPlusSquare } from 'react-icons/fa';
 
 //card 디자인 불러오기
-import PlacesCard from '../components/PlacesCard';
+import MainPlacesCard from '../components/MainPlacesCard';
+import MainErrorCard from '../components/MainErrorCard';
 import MainHeader from '../components/MainHeader';
 
 import './Home.scss';
 
-import changeWCCode from '../functions/changeWeatherConditionCode';
+import { _changeWCode } from '../functions/changeWeatherData';
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
 
@@ -68,7 +69,7 @@ export default class Home extends Component {
           card1: {
             address: this.state.card1.address,
             temp: json.main.temp,
-            weatherCondition: changeWCCode(json.weather[0].id)
+            weatherCondition: _changeWCode(json.weather[0].id)
           },
           isLoaded: true
         });
@@ -83,7 +84,7 @@ export default class Home extends Component {
         <MainHeader />
         {state.isLoaded ? (
           <NavLink to='/forecast/61/126' className='item'>
-            <PlacesCard
+            <MainPlacesCard
               locationTitle={state.card1.address}
               locationSub='현재 위치'
               weatherType='눈'
@@ -91,45 +92,11 @@ export default class Home extends Component {
               time='14:41'
             />
           </NavLink>
+        ) : state.error ? (
+          <MainErrorCard />
         ) : (
           <p style={{ color: '#f1f1f1' }}>로딩중..</p>
         )}
-        <NavLink to='/forecast/61/126' className='item'>
-          <PlacesCard
-            locationTitle='서울'
-            locationSub='대한민국'
-            weatherType='맑음'
-            temperature='15'
-            time='14:41'
-          />
-        </NavLink>
-        <NavLink to='/forecast/61/126' className='item'>
-          <PlacesCard
-            locationTitle='서울'
-            locationSub='대한민국'
-            weatherType='맑음'
-            temperature='15'
-            time='14:41'
-          />
-        </NavLink>
-        <NavLink to='/forecast/61/126' className='item'>
-          <PlacesCard
-            locationTitle='서울'
-            locationSub='대한민국'
-            weatherType='맑음'
-            temperature='15'
-            time='14:41'
-          />
-        </NavLink>
-        <NavLink to='/forecast/61/126' className='item'>
-          <PlacesCard
-            locationTitle='서울'
-            locationSub='대한민국'
-            weatherType='맑음'
-            temperature='15'
-            time='14:41'
-          />
-        </NavLink>
 
         <div className='list_card_add'>
           <IconContext.Provider value={{ size: '3em', color: 'white' }}>

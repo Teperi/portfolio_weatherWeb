@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { IconContext } from 'react-icons';
 import { WiDaySunny, WiSnow, WiCelsius } from 'react-icons/wi';
 
-import './PlacesCard.scss';
+import './MainPlacesCard.scss';
 
 function WeatherTypes(props) {
   const type = props.type;
@@ -14,7 +14,7 @@ function WeatherTypes(props) {
   }
 }
 // TODO: constructor 사용시 문제점 확인
-export default class PlaceCard extends Component {
+export default class MainPlacesCard extends Component {
   constructor(props) {
     super(props);
     if (props.weatherType === '맑음') {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import changeWCCode from '../functions/changeWeatherConditionCode';
+import { _getMainCurrLocaInfo } from '../functions/changeWeatherData';
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
@@ -16,8 +17,14 @@ export default class Test extends Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      position => {
-        this._getInfoJson(position.coords.latitude, position.coords.longitude);
+      async position => {
+        const obj = await _getMainCurrLocaInfo(position.coords.latitude, position.coords.longitude);
+        this.setState({
+          address: obj.address,
+          temp: obj.weather.main.temp,
+          isLoaded: true
+        });
+        console.log(this.state);
       },
       error => {
         this.setState({
@@ -27,9 +34,9 @@ export default class Test extends Component {
     );
   }
 
-  _getInfoJson = (lat, lon) => {
+  _getInfoJson = async (lat, lon) => {
     // 주소 정보 가져오기
-    fetch(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lon}&y=${lat}`, {
+    await fetch(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lon}&y=${lat}`, {
       headers: {
         Authorization: `KakaoAK ${KAKAO_API_KEY}`
       }
@@ -39,7 +46,7 @@ export default class Test extends Component {
         this.setState({
           address: json.documents[0].address_name
         });
-        console.log(this.state.address);
+        console.log(json.documents[0].address_name);
       })
       .then(this._getWeatherJson(lat, lon));
     // 주소 정보 다 가져온 이후 날씨 정보 가져오기
@@ -51,7 +58,6 @@ export default class Test extends Component {
     )
       .then(response => response.json())
       .then(json => {
-        console.log('api 확인용', json);
         this.setState({
           temp: json.main.temp,
           weatherCondition: changeWCCode(json.weather[0].id),

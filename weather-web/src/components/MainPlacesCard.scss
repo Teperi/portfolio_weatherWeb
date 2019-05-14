@@ -38,4 +38,22 @@
       margin: 40px 8px 0 0;
     }
   }
+  &_errorIcon {
+    align-self: center;
+    text-align: center;
+    flex-basis: 30%;
+  }
+  &_errorText {
+    align-self: center;
+    flex-basis: 70%;
+    color: #f1f1f1;
+    .error_title {
+      font-size: 1.2em;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+    .error_sub {
+      margin: 0;
+    }
+  }
 }
