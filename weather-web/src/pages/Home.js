@@ -14,9 +14,7 @@ import MainHeader from '../components/MainHeader';
 
 import './Home.scss';
 
-import { _changeWCode } from '../functions/changeWeatherData';
-const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
+import { _getMainCurrLocaInfo } from '../functions/changeWeatherData';
 
 export default class Home extends Component {
   state = {
@@ -28,8 +26,23 @@ export default class Home extends Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      position => {
-        this._getInfoJson(position.coords.latitude, position.coords.longitude);
+      async position => {
+        const obj = await _getMainCurrLocaInfo(position.coords.latitude, position.coords.longitude);
+        console.log(obj);
+        this.setState({
+          card1: {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            address: obj.address,
+            temp: obj.temp,
+            type: obj.weatherType,
+            time: obj.time,
+            sunrise: obj.sunrise,
+            sunset: obj.sunset
+          },
+          isLoaded: true
+        });
+        console.log(this.state);
       },
       error => {
         this.setState({
@@ -39,57 +52,21 @@ export default class Home extends Component {
     );
   }
 
-  _getInfoJson = (lat, lon) => {
-    // 주소 정보 가져오기
-    fetch(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lon}&y=${lat}`, {
-      headers: {
-        Authorization: `KakaoAK ${KAKAO_API_KEY}`
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          card1: {
-            address: json.documents[0].address_name
-          }
-        });
-      })
-      .then(this._getWeatherJson(lat, lon));
-    // 주소 정보 다 가져온 이후 날씨 정보 가져오기
-  };
-
-  _getWeatherJson = (lat, lon) => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${WEATHER_API_KEY}&units=metric`
-    )
-      .then(response => response.json())
-      .then(json => {
-        console.log('api 확인용', json);
-        this.setState({
-          card1: {
-            address: this.state.card1.address,
-            temp: json.main.temp,
-            weatherCondition: _changeWCode(json.weather[0].id)
-          },
-          isLoaded: true
-        });
-        console.log(this.state);
-      });
-  };
-
   render() {
     const state = this.state;
     return (
       <div className='list'>
         <MainHeader />
         {state.isLoaded ? (
-          <NavLink to='/forecast/61/126' className='item'>
+          <NavLink to={`forecast/${state.card1.lat}/${state.card1.lon}`} className='item'>
             <MainPlacesCard
               locationTitle={state.card1.address}
               locationSub='현재 위치'
-              weatherType='눈'
+              weatherType={state.card1.type}
               temperature={state.card1.temp}
-              time='14:41'
+              sunrise={state.card1.sunrise}
+              sunset={state.card1.sunset}
+              time={state.card1.time}
             />
           </NavLink>
         ) : state.error ? (
