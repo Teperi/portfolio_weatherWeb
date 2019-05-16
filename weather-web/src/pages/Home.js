@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 // NavLink 사용
 import { NavLink } from 'react-router-dom';
 
-// Icon 불러오기
-import { IconContext } from 'react-icons';
-import { FaPlusSquare } from 'react-icons/fa';
-
 //card 디자인 불러오기
 import MainPlacesCard from '../components/MainPlacesCard';
 import MainErrorCard from '../components/MainErrorCard';
@@ -14,32 +10,54 @@ import MainHeader from '../components/MainHeader';
 
 import './Home.scss';
 // weather API 및 주소 API 에서 가공된 데이터 가져오기
-import { _getMainCurrLocaInfo } from '../functions/getData';
+import { _getCardLocaInfo } from '../functions/getData';
 
 export default class Home extends Component {
   state = {
     isLoaded: false,
-    cardCount: 1,
     error: null,
-    card1: null
+    card1: null,
+    card2: null,
+    card3: null
   };
 
   componentDidMount() {
     // 현재 위치(좌표) 확인해서 API 에서 가공된 데이터 가져오기
     navigator.geolocation.getCurrentPosition(
       async position => {
-        const obj = await _getMainCurrLocaInfo(position.coords.latitude, position.coords.longitude);
-        console.log(obj);
+        const obj1 = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
+        const obj2 = await _getCardLocaInfo(40.71, -74.01);
+        const obj3 = await _getCardLocaInfo(48.85, 2.35);
         this.setState({
           card1: {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            address: obj.address,
-            temp: obj.temp,
-            type: obj.weatherType,
-            time: obj.time,
-            sunrise: obj.sunrise,
-            sunset: obj.sunset
+            address: obj1.address,
+            temp: obj1.temp,
+            type: obj1.weatherType,
+            time: obj1.time,
+            sunrise: obj1.sunrise,
+            sunset: obj1.sunset
+          },
+          card2: {
+            lat: 40.71,
+            lon: -74.01,
+            address: obj2.address,
+            temp: obj2.temp,
+            type: obj2.weatherType,
+            time: obj2.time,
+            sunrise: obj2.sunrise,
+            sunset: obj2.sunset
+          },
+          card3: {
+            lat: 48.85,
+            lon: 2.35,
+            address: obj3.address,
+            temp: obj3.temp,
+            type: obj3.weatherType,
+            time: obj3.time,
+            sunrise: obj3.sunrise,
+            sunset: obj3.sunset
           },
           isLoaded: true
         });
@@ -56,31 +74,62 @@ export default class Home extends Component {
   render() {
     const state = this.state;
     return (
-      <div className='list'>
-        <MainHeader />
+      <div>
         {state.isLoaded ? (
-          <NavLink to={`forecast/${state.card1.lat}/${state.card1.lon}`} className='item'>
-            <MainPlacesCard
-              locationTitle={state.card1.address}
-              locationSub='현재 위치'
-              weatherType={state.card1.type}
-              temperature={state.card1.temp}
-              sunrise={state.card1.sunrise}
-              sunset={state.card1.sunset}
-              time={state.card1.time}
-            />
-          </NavLink>
-        ) : state.error ? (
-          <MainErrorCard />
-        ) : (
-          <p style={{ color: '#f1f1f1' }}>로딩중..</p>
-        )}
-
+          <div className='list'>
+            <MainHeader />
+            <NavLink to={`forecast/${state.card1.lat}/${state.card1.lon}`} className='item'>
+              <MainPlacesCard
+                locationTitle={state.card1.address}
+                locationSub='현재 위치'
+                weatherType={state.card1.type}
+                temperature={state.card1.temp}
+                sunrise={state.card1.sunrise}
+                sunset={state.card1.sunset}
+                time={state.card1.time}
+              />
+            </NavLink>
+            <NavLink to={`forecast/40.71/-74.01`} className='item'>
+              <MainPlacesCard
+                locationTitle={state.card2.address}
+                locationSub='USA'
+                weatherType={state.card2.type}
+                temperature={state.card2.temp}
+                sunrise={state.card2.sunrise}
+                sunset={state.card2.sunset}
+                time={state.card2.time}
+              />
+            </NavLink>
+            <NavLink to={`forecast/48.85/2.35`} className='item'>
+              <MainPlacesCard
+                locationTitle={state.card3.address}
+                locationSub='France'
+                weatherType={state.card3.type}
+                temperature={state.card3.temp}
+                sunrise={state.card3.sunrise}
+                sunset={state.card3.sunset}
+                time={state.card3.time}
+              />
+            </NavLink>
+            {/* 카드 추가 기능 - 구현 시 사용
         <div className='list_card_add'>
-          <IconContext.Provider value={{ size: '3em', color: 'white' }}>
+        <IconContext.Provider value={{ size: '3em', color: 'white' }}>
             <FaPlusSquare />
-          </IconContext.Provider>
-        </div>
+            </IconContext.Provider>
+        </div> 
+      */}
+          </div>
+        ) : state.error ? (
+          <div className='list'>
+            <MainHeader />
+            <MainErrorCard />
+          </div>
+        ) : (
+          <div className='list'>
+            <MainHeader />
+            <p style={{ color: '#f1f1f1' }}>로딩중..</p>
+          </div>
+        )}
       </div>
     );
   }

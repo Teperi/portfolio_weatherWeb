@@ -77,7 +77,7 @@ export const WeatherTypeColor = (type, sunrise, sunset) => {
     if (timeInMs >= sunrise && timeInMs <= sunset) {
       return {
         bgColor: '#f8bc25',
-        textColor: '#f1f1f1'
+        textColor: '#333'
       };
     } else {
       return {
@@ -88,7 +88,7 @@ export const WeatherTypeColor = (type, sunrise, sunset) => {
   } else if (type === 'Clouds') {
     return {
       bgColor: '#89929f',
-      textColor: '#333'
+      textColor: '#f1f1f1'
     };
   } else {
     console.log('색 변경 에러인데요??');

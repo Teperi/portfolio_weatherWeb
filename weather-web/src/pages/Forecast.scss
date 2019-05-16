@@ -1,5 +1,20 @@
 @import '../css/responsiveGrid.scss';
 
+.emptyHeader {
+  box-sizing: border-box;
+  grid-area: 1 / 1 / 2 / span 2;
+  height: 35px;
+  margin-bottom: 32px;
+  @include respond-to('small') {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
+
+.lodingText {
+  color: 'white';
+  grid-column: 1;
+}
+
 .forecast {
   display: grid;
   padding: 16px 64px;
@@ -48,69 +63,7 @@
       transform: translate(0%, 50%);
       z-index: 1;
     }
-    &_nowTop {
-      width: 100%;
-      background: #bbb;
-      height: 92px;
-      display: flex;
-      padding: 16px;
-      border-radius: 16px 16px 0 0;
-      box-sizing: border-box;
-      &_left {
-        flex-basis: 25%;
-      }
-      &_center {
-        flex-basis: 50%;
-        flex-direction: column;
-        .timeTitle {
-          margin: 8px 0;
-          font-size: 1.2em;
-          font-weight: 600;
-        }
-        .weatherTitle {
-          margin: 0;
-        }
-      }
-      &_right {
-        flex-basis: 25%;
-        .temperatureTitle {
-          margin: 8px 0;
-          font-size: 2.5em;
-          text-align: center;
-        }
-      }
-    }
-    &_nowBottom {
-      width: 100%;
-      display: flex;
-      background: #ccc;
-      padding: 16px;
-      height: 92px;
-      border-radius: 0 0 16px 16px;
-      box-sizing: border-box;
-      justify-content: space-between;
-      &_item {
-        flex-basis: 30%;
-        display: grid;
-        grid-template-columns: auto auto;
-        .nowBottom_icon {
-          grid-area: 1 / 1 / span 2 / 1;
-          vertical-align: middle;
-          justify-self: center;
-        }
-        .numberText1,
-        .numberText2,
-        .numberText3 {
-          margin: 0;
-          font-weight: 600;
-        }
-        .subText1,
-        .subText2,
-        .subText3 {
-          margin: 8px 0;
-        }
-      }
-    }
+
     &_tomorrow {
       width: 100%;
       display: flex;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Icon 불러오기
+// Icon 설정 파일
 import { IconContext } from 'react-icons';
 // 날씨에 맞는 아이콘 가져오기
 import { WiCelsius, WiRain, WiHumidity, WiStrongWind, WiSunrise, WiSunset } from 'react-icons/wi';
@@ -40,15 +40,18 @@ const ForecastNowcard = ({
   return (
     <div className='forecast_card_now' style={bgColor}>
       <div className='forecast_card_now_Top'>
+        {/* 아이콘 */}
         <div className='forecast_card_now_Top_left'>
           <IconContext.Provider value={{ size: '3.5em' }}>
             <WeatherTypeIcon type={weatherType} sunrise={sunrise} sunset={sunset} />
           </IconContext.Provider>
         </div>
+        {/* 날씨 */}
         <div className='forecast_card_now_Top_center'>
           <p className='timeTitle'>지금</p>
           <p className='weatherTitle'>{WeatherTypeText(weatherType)}</p>
         </div>
+        {/* 온도 */}
         <div className='forecast_card_now_Top_right'>
           <p className='temperatureTitle'>
             {temp}
@@ -57,12 +60,13 @@ const ForecastNowcard = ({
         </div>
       </div>
       <div className='forecast_card_now_Bottom'>
-        {weatherType === 'rain' ? (
+        {/* 비온다면 강수량, 비가 안오면 습도 표시*/}
+        {weatherType === 'Rain' ? (
           <div className='forecast_card_now_Bottom_item'>
             <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>
               <WiRain />
             </IconContext.Provider>
-            <p className='numberText1'>{rain} mm</p>
+            <p className='numberText1'>{rain['1h']} mm</p>
             <p className='subText1'>강수량</p>
           </div>
         ) : (

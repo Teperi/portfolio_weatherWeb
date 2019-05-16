@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { _getMainCurrLocaInfo } from '../functions/getData';
+import { _getCardLocaInfo } from '../functions/getData';
 
 export default class Test extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class Test extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       async position => {
-        const obj = await _getMainCurrLocaInfo(position.coords.latitude, position.coords.longitude);
+        const obj = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
         this.setState({
           address: obj.address,
           temp: obj.weather.main.temp,

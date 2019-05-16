@@ -1,6 +1,14 @@
+// 예보 상세 페이지 현재 날씨 정보 가져오기
 export const _getForecastNowInfo = async (lat, lon) => {
-  const address = await _getAddr(lat, lon);
   const weatherNow = await _getWeatherNow(lat, lon);
+  // 주소의 경우 한국이면 다음 지도 사용
+  // 아닌 경우 날씨 API 에서 제공하는 이름 그대로 사용
+  let address = null;
+  if (lat >= 33 && lat <= 43 && lon >= 124 && lon <= 132) {
+    address = await _getAddr(lat, lon);
+  } else {
+    address = weatherNow.name;
+  }
   return {
     address: address,
     weatherType: _changeWCode(weatherNow.weather[0].id),
@@ -8,25 +16,36 @@ export const _getForecastNowInfo = async (lat, lon) => {
     humidity: weatherNow.main.humidity,
     windSpeed: weatherNow.wind.speed,
     windDeg: weatherNow.wind.deg,
+    // 일출, 일몰 데이터의 경우 초 단위 데이터가 들어옴
+    // Date.now() 는 단위가 밀리초여서 비교가 불가능
+    // *1000 을 통해 밀리초로 변경
     sunrise: weatherNow.sys.sunrise * 1000,
     sunset: weatherNow.sys.sunset * 1000,
     rain: weatherNow.rain
   };
 };
 
-// 전체 데이터 취합해서 보내기
-export const _getMainCurrLocaInfo = async (lat, lon) => {
-  const address = await _getAddr(lat, lon);
+// 메인 페이지 현재 날씨 정보 가져오기
+export const _getCardLocaInfo = async (lat, lon) => {
   const weatherNow = await _getWeatherNow(lat, lon);
+  console.log(weatherNow);
+  let address = null;
+  if (lat >= 33 && lat <= 43 && lon >= 124 && lon <= 132) {
+    address = await _getAddr(lat, lon);
+  } else {
+    address = weatherNow.name;
+  }
   return {
     address: address,
     temp: Math.floor(weatherNow.main.temp),
     weatherType: _changeWCode(weatherNow.weather[0].id),
-    time: getTime(),
+    // TODO: 시간을 받아 각 타임존에 맞는 시간 내보내기
+    time: _getTime(),
     sunrise: weatherNow.sys.sunrise * 1000,
     sunset: weatherNow.sys.sunset * 1000
   };
 };
+
 // weather type code 를 text 로 변경
 const _changeWCode = id => {
   if (id >= 200 && id < 300) {
@@ -48,7 +67,8 @@ const _changeWCode = id => {
   }
 };
 // 현재 시간
-function getTime() {
+function _getTime() {
+  // TODO: 시간을 받아 각 타임존에 맞는 시간 내보내기
   const date = new Date();
   const hours = date.getHours();
   const minutes = date.getMinutes();
