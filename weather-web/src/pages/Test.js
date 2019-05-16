@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { _getMainCurrLocaInfo } from '../functions/changeWeatherData';
+import { _getMainCurrLocaInfo } from '../functions/getData';
 
 export default class Test extends Component {
   state = {

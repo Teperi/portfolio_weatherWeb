@@ -13,8 +13,8 @@ import MainErrorCard from '../components/MainErrorCard';
 import MainHeader from '../components/MainHeader';
 
 import './Home.scss';
-
-import { _getMainCurrLocaInfo } from '../functions/changeWeatherData';
+// weather API 및 주소 API 에서 가공된 데이터 가져오기
+import { _getMainCurrLocaInfo } from '../functions/getData';
 
 export default class Home extends Component {
   state = {
@@ -25,6 +25,7 @@ export default class Home extends Component {
   };
 
   componentDidMount() {
+    // 현재 위치(좌표) 확인해서 API 에서 가공된 데이터 가져오기
     navigator.geolocation.getCurrentPosition(
       async position => {
         const obj = await _getMainCurrLocaInfo(position.coords.latitude, position.coords.longitude);

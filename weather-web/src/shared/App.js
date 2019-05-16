@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path='/' component={Home} />
-        <Route path='/forecast/:xCoord/:yCoord' component={Forecast} />
+        <Route path='/forecast/:lat/:lon' component={Forecast} />
         <Route path='/test' component={Test} />
       </div>
     );
