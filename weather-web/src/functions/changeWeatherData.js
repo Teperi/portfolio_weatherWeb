@@ -56,7 +56,7 @@ export const WeatherTypeColor = (type, sunrise, sunset) => {
   } else if (type === 'Drizzle') {
     return {
       bgColor: '#7da9ff',
-      textColor: '#f1f1f1'
+      textColor: '#333'
     };
   } else if (type === 'Rain') {
     return {

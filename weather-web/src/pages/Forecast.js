@@ -3,8 +3,25 @@ import React, { Component } from 'react';
 import './Forecast.scss';
 import { _getForecastNowInfo } from '../functions/getData';
 
-import ForecastNowcard from '../components/ForecastNowcard';
-import ForecastHeader from '../components/ForecastHeader';
+import { ForecastHeader, ForecastNowcard, ForecastLinecard, ForecastNext24 } from '../components';
+
+const nowTime= Date.now();
+
+const getWeatherData = async (lat, lon) => {
+  const obj = await _getForecastNowInfo(lat, lon);
+  console.log(obj);
+  return {
+    address: obj.address,
+    weatherType: obj.weatherType,
+    temp: obj.temp,
+    humidity: obj.humidity,
+    windSpeed: obj.windSpeed,
+    windDeg: obj.windDeg,
+    sunrise: obj.sunrise,
+    sunset: obj.sunset,
+    rain: obj.rain
+  };
+};
 
 export default class Forecast extends Component {
   state = {
@@ -13,32 +30,17 @@ export default class Forecast extends Component {
     nowcard: null
   };
   componentDidMount() {
-    const test = async () => {
-      const obj = await _getForecastNowInfo(
-        this.props.match.params.lat,
-        this.props.match.params.lon
-      );
-      console.log(obj);
+    getWeatherData(this.props.match.params.lat, this.props.match.params.lon).then(res =>
       this.setState({
-        nowcard: {
-          address: obj.address,
-          weatherType: obj.weatherType,
-          temp: obj.temp,
-          humidity: obj.humidity,
-          windSpeed: obj.windSpeed,
-          windDeg: obj.windDeg,
-          sunrise: obj.sunrise,
-          sunset: obj.sunset,
-          rain: obj.rain
-        },
+        nowcard: res,
         isLoaded: true
-      });
-    };
-    test();
+      })
+    );
   }
 
   render() {
     const state = this.state;
+
     return (
       <div>
         {state.isLoaded ? (
@@ -53,15 +55,14 @@ export default class Forecast extends Component {
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}
               rain={state.nowcard.rain}
+              time={nowTime}
             />
-            <div className='forecast_lineCard'>
-              <div className='forecast_lineCard_line' />
-              <div className='forecast_lineCard_left' />
-              <div className='forecast_lineCard_right'>
-                <p className='nextTimeTitle'>잠시 후</p>
-                <p className='nextWeatherTitle'>맑음</p>
-              </div>
-            </div>
+            <ForecastLinecard weatherType={state.nowcard.weatherType} />
+            <ForecastNext24
+              weatherType={state.nowcard.weatherType}
+              sunrise={state.nowcard.sunrise}
+              sunset={state.nowcard.sunset}
+            />
           </div>
         ) : (
           <div className='forecast'>

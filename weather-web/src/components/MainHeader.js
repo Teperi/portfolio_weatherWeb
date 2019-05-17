@@ -12,6 +12,7 @@ const MainHeader = () => {
         <MdLocationOn />
       </IconContext.Provider>
       <p className='MainHeader_text'>위치</p>
+      <p className='MainHeader_time'>11:11</p>
     </div>
   );
 };

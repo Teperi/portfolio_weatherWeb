@@ -1,4 +1,4 @@
-// 예보 상세 페이지 현재 날씨 정보 가져오기
+// forecast.js 현재 날씨 정보 가져오기
 export const _getForecastNowInfo = async (lat, lon) => {
   const weatherNow = await _getWeatherNow(lat, lon);
   // 주소의 경우 한국이면 다음 지도 사용
@@ -25,6 +25,13 @@ export const _getForecastNowInfo = async (lat, lon) => {
   };
 };
 
+// forecast.js 미래 날씨 예측 정보 가저오기
+export const _getForecastNext5Info = async (lat, lon) => {
+  const weatherNext5 = await _getWeatherNext5(lat, lon);
+  console.log(weatherNext5);
+  console.log(_changeWCode(weatherNext5.list[0].weather[0].id));
+};
+
 // 메인 페이지 현재 날씨 정보 가져오기
 export const _getCardLocaInfo = async (lat, lon) => {
   const weatherNow = await _getWeatherNow(lat, lon);
@@ -39,8 +46,6 @@ export const _getCardLocaInfo = async (lat, lon) => {
     address: address,
     temp: Math.floor(weatherNow.main.temp),
     weatherType: _changeWCode(weatherNow.weather[0].id),
-    // TODO: 시간을 받아 각 타임존에 맞는 시간 내보내기
-    time: _getTime(),
     sunrise: weatherNow.sys.sunrise * 1000,
     sunset: weatherNow.sys.sunset * 1000
   };
@@ -66,14 +71,6 @@ const _changeWCode = id => {
     throw new Error('날씨 코드가 이상해!');
   }
 };
-// 현재 시간
-function _getTime() {
-  // TODO: 시간을 받아 각 타임존에 맞는 시간 내보내기
-  const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
-}
 // 좌표 위치
 const _getAddr = async (lat, lon) => {
   const address = await fetch(
@@ -92,6 +89,16 @@ const _getAddr = async (lat, lon) => {
 const _getWeatherNow = async (lat, lon) => {
   const weather = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${
+      process.env.REACT_APP_WEATHER_API_KEY
+    }&units=metric`
+  ).then(response => response.json());
+  return weather;
+};
+
+// 미래 5일 날씨 예보
+const _getWeatherNext5 = async (lat, lon) => {
+  const weather = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${
       process.env.REACT_APP_WEATHER_API_KEY
     }&units=metric`
   ).then(response => response.json());

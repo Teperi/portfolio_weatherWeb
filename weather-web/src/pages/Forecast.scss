@@ -134,40 +134,4 @@
       }
     }
   }
-  &_lineCard {
-    grid-column: 1;
-    background: #1b1b1b;
-    display: flex;
-    box-sizing: border-box;
-    position: relative;
-    padding: 16px;
-    color: #f1f1f1;
-    &_line {
-      height: 100%;
-      position: absolute;
-      left: 50px;
-      top: 0;
-      box-sizing: border-box;
-      border: 3px solid white;
-      z-index: 2;
-    }
-    &_left {
-      flex-basis: 25%;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    &_right {
-      flex-basis: 75%;
-      width: 100%;
-      box-sizing: border-box;
-      .nextTimeTitle {
-        margin: 8px 0;
-        font-size: 1.2em;
-        font-weight: 600;
-      }
-      .nextWeatherTitle {
-        margin: 0;
-      }
-    }
-  }
 }

@@ -1,0 +1,46 @@
+.forecast_card_next24 {
+  grid-column: 1;
+  overflow: none;
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  position: relative;
+  padding: 16px;
+  &_left {
+    flex-basis: 25%;
+    padding: 0 0 0 8px;
+  }
+  &_right {
+    flex-basis: 75%;
+    .tomorrowTimeTitle {
+      margin: 8px 0;
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    .tomorrowWeatherTitle {
+      margin: 0;
+    }
+  }
+
+  &_topcircle {
+    position: absolute;
+    background: #1b1b1b;
+    border-radius: 50%;
+    padding: 5px;
+    left: 40px;
+    top: 0;
+    transform: translate(0%, -50%);
+    z-index: 1;
+  }
+  &_bottomcircle {
+    position: absolute;
+    background: #1b1b1b;
+    border-radius: 50%;
+    padding: 5px;
+    left: 40px;
+    bottom: 0;
+    transform: translate(0%, 50%);
+    z-index: 1;
+  }
+}

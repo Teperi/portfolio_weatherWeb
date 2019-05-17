@@ -19,9 +19,6 @@ import {
 // css
 import './ForecastNowcard.scss';
 
-// 현재 시간 확인(일몰 및 일출시간 노출시 확인)
-const nowTime = Date.now();
-
 const ForecastNowcard = ({
   weatherType,
   temp,
@@ -30,7 +27,8 @@ const ForecastNowcard = ({
   windDeg,
   sunrise,
   sunset,
-  rain
+  rain,
+  time
 }) => {
   const style = WeatherTypeColor(weatherType, sunrise, sunset);
   const bgColor = {
@@ -85,7 +83,7 @@ const ForecastNowcard = ({
           <p className='numberText2'>{windSpeed} m/s</p>
           <p className='subText2'>{WindDegreeToText(windDeg)}</p>
         </div>
-        {nowTime >= sunrise && nowTime <= sunset ? (
+        {time >= sunrise && time <= sunset ? (
           <div className='forecast_card_now_Bottom_item'>
             <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>
               <WiSunset />
@@ -103,7 +101,9 @@ const ForecastNowcard = ({
           </div>
         )}
       </div>
-      <IconContext.Provider value={{ color: '#fdfdfd', className: 'forecast_card_bottomcircle' }}>
+      <IconContext.Provider
+        value={{ color: '#fdfdfd', className: 'forecast_card_now_bottomcircle' }}
+      >
         <FaCircle />
       </IconContext.Provider>
     </div>

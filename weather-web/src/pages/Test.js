@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { _getCardLocaInfo } from '../functions/getData';
+import { _getForecastNext5Info } from '../functions/getData';
 
 export default class Test extends Component {
   state = {
@@ -14,13 +14,11 @@ export default class Test extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       async position => {
-        const obj = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
+        await _getForecastNext5Info(position.coords.latitude, position.coords.longitude);
+        await _getForecastNext5Info(40.71, -74.01);
         this.setState({
-          address: obj.address,
-          temp: obj.weather.main.temp,
           isLoaded: true
         });
-        console.log(this.state);
       },
       error => {
         this.setState({

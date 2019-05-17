@@ -38,7 +38,6 @@ export default class MainPlacesCard extends Component {
             {this.props.temperature}
             <WiCelsius />
           </p>
-          <p className='time'>{this.props.time}</p>
         </div>
       </div>
     );
