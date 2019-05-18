@@ -35,12 +35,13 @@ const ForecastNowcard = ({
     background: style.bgColor,
     color: style.textColor
   };
+  console.log(rain);
   return (
     <div className='forecast_card_now' style={bgColor}>
       <div className='forecast_card_now_Top'>
         {/* 아이콘 */}
         <div className='forecast_card_now_Top_left'>
-          <IconContext.Provider value={{ size: '3.5em' }}>
+          <IconContext.Provider value={{ size: '4em' }}>
             <WeatherTypeIcon type={weatherType} sunrise={sunrise} sunset={sunset} />
           </IconContext.Provider>
         </div>
@@ -64,8 +65,16 @@ const ForecastNowcard = ({
             <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>
               <WiRain />
             </IconContext.Provider>
-            <p className='numberText1'>{rain['1h']} mm</p>
+            <p className='numberText1'>{rain === undefined ? 0 : rain['1h']} mm</p>
             <p className='subText1'>강수량</p>
+          </div>
+        ) : weatherType === 'Snow' ? (
+          <div className='forecast_card_now_Bottom_item'>
+            <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>
+              <WiHumidity />
+            </IconContext.Provider>
+            <p className='numberText1'>{humidity} %</p>
+            <p className='subText1'>습도</p>
           </div>
         ) : (
           <div className='forecast_card_now_Bottom_item'>

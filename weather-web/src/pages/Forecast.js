@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import './Forecast.scss';
-import { _getForecastNowInfo } from '../functions/getData';
+import { _getForecastNowInfo, _getNowTime } from '../functions/getData';
 
 import { ForecastHeader, ForecastNowcard, ForecastLinecard, ForecastNext24 } from '../components';
 
-const nowTime= Date.now();
+const nowTime = Date.now();
 
 const getWeatherData = async (lat, lon) => {
   const obj = await _getForecastNowInfo(lat, lon);
@@ -26,6 +26,7 @@ const getWeatherData = async (lat, lon) => {
 export default class Forecast extends Component {
   state = {
     isLoaded: false,
+    time: _getNowTime(),
     error: null,
     nowcard: null
   };
@@ -45,7 +46,7 @@ export default class Forecast extends Component {
       <div>
         {state.isLoaded ? (
           <div className='forecast'>
-            <ForecastHeader address={state.nowcard.address} />
+            <ForecastHeader address={state.nowcard.address} nowTime={state.time} />
             <ForecastNowcard
               weatherType={state.nowcard.weatherType}
               temp={state.nowcard.temp}
@@ -66,7 +67,7 @@ export default class Forecast extends Component {
           </div>
         ) : (
           <div className='forecast'>
-            <div className='emptyHeader' />
+            <ForecastHeader address='' nowTime={state.time} />
             <p className='loadingText'>로딩중</p>
           </div>
         )}

@@ -5,9 +5,6 @@ import './ForecastLinecard.scss';
 
 import { WeatherTypeText } from '../functions/changeWeatherData';
 
-// 현재 시간 확인(일몰 및 일출시간 노출시 확인)
-const nowTime = Date.now();
-
 const ForecastLinecard = ({ weatherType }) => {
   return (
     <div className='forecast_lineCard'>

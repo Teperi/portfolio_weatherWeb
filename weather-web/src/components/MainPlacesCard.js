@@ -23,7 +23,7 @@ export default class MainPlacesCard extends Component {
     return (
       <div className='place_card' style={bgColor}>
         <div className='place_card_left'>
-          <IconContext.Provider value={{ size: '3.5em' }}>
+          <IconContext.Provider value={{ size: '4em' }}>
             <WeatherTypeIcon
               type={this.props.weatherType}
               sunrise={this.props.sunrise}

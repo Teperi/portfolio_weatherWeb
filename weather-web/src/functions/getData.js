@@ -25,6 +25,12 @@ export const _getForecastNowInfo = async (lat, lon) => {
   };
 };
 
+export const _getNowTime = () => {
+  const date = new Date();
+  const dateText = date.toLocaleString('ko-KR');
+  return dateText.length === 23 ? dateText.substr(0, 20) : dateText.substr(0, 21);
+};
+
 // forecast.js 미래 날씨 예측 정보 가저오기
 export const _getForecastNext5Info = async (lat, lon) => {
   const weatherNext5 = await _getWeatherNext5(lat, lon);

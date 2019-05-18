@@ -8,11 +8,12 @@ import { MainHeader, MainPlacesCard, MainErrorCard } from '../components';
 
 import './Home.scss';
 // weather API 및 주소 API 에서 가공된 데이터 가져오기
-import { _getCardLocaInfo } from '../functions/getData';
+import { _getCardLocaInfo, _getNowTime } from '../functions/getData';
 
 export default class Home extends Component {
   state = {
     isLoaded: false,
+    time: _getNowTime(),
     error: null,
     card1: null,
     card2: null,
@@ -72,7 +73,7 @@ export default class Home extends Component {
       <div>
         {state.isLoaded ? (
           <div className='list'>
-            <MainHeader />
+            <MainHeader nowTime={state.time} />
             <NavLink to={`forecast/${state.card1.lat}/${state.card1.lon}`} className='item'>
               <MainPlacesCard
                 locationTitle={state.card1.address}
@@ -113,12 +114,12 @@ export default class Home extends Component {
           </div>
         ) : state.error ? (
           <div className='list'>
-            <MainHeader />
+            <MainHeader nowTime={state.time} />
             <MainErrorCard />
           </div>
         ) : (
           <div className='list'>
-            <MainHeader />
+            <MainHeader nowTime={state.time} />
             <p style={{ color: '#f1f1f1' }}>로딩중..</p>
           </div>
         )}

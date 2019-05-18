@@ -6,7 +6,7 @@ import { MdKeyboardBackspace } from 'react-icons/md';
 
 import './ForecastHeader.scss';
 
-const ForecastHeader = address => {
+const ForecastHeader = ({ address, nowTime }) => {
   return (
     <div className='ForecastHeader' style={{ color: 'white' }}>
       <NavLink exact to='/'>
@@ -14,7 +14,8 @@ const ForecastHeader = address => {
           <MdKeyboardBackspace />
         </IconContext.Provider>
       </NavLink>
-      <p className='ForecastHeader_text'>{address.address}</p>
+      <p className='ForecastHeader_text'>{address}</p>
+      <p className='ForecastHeader_time'>{nowTime}</p>
     </div>
   );
 };
