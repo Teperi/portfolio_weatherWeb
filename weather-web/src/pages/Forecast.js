@@ -25,8 +25,12 @@ const getWeatherData = async (lat, lon) => {
 };
 
 const getNowDate = new Date();
-let time = getNowDate;
-time.setDate(getNowDate.getDate() + 1);
+const year = getNowDate.getFullYear();
+const month = getNowDate.getMonth();
+const day = getNowDate.getDate() + 1;
+const Nextday = new Date(year, month, day, getNowDate.getHours(), getNowDate.getMinutes());
+console.log(getNowDate);
+console.log(Nextday);
 
 export default class Forecast extends Component {
   state = {
@@ -35,7 +39,10 @@ export default class Forecast extends Component {
     error: null,
     nowcard: null
   };
+
   componentDidMount() {
+    console.log(getNowDate);
+    console.log(Nextday);
     getWeatherData(this.props.match.params.lat, this.props.match.params.lon).then(res =>
       this.setState({
         nowcard: res.nowWeather,
@@ -67,7 +74,7 @@ export default class Forecast extends Component {
             <ForecastLinecard text='잠시 후' weatherType={state.forecastcard[0].weatherType} />
             <ForecastNext24
               forecast={state.forecastcard.filter(obj => {
-                return obj.dt <= time;
+                return obj.dt <= Nextday;
               })}
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}

@@ -27,7 +27,7 @@ const next24Textloop = arr => {
       if (index === 0) {
         return WeatherTypeText(value.weatherType);
       } else {
-        return `${value.dt_day !== arr[index - 1].dt_day ? ` ${value.dt_day}일` : ``} ${
+        return `${value.dt_day !== arr[index - 1].dt_day ? ` 내일` : ``} ${
           value.dt_hours <= 12 ? `오전 ${value.dt_hours}` : `오후 ${value.dt_hours - 12}`
         }시 부터 ${WeatherTypeText(value.weatherType)}`;
       }
