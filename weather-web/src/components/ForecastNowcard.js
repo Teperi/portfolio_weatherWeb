@@ -35,7 +35,6 @@ const ForecastNowcard = ({
     background: style.bgColor,
     color: style.textColor
   };
-  console.log(rain);
   return (
     <div className='forecast_card_now' style={bgColor}>
       <div className='forecast_card_now_Top'>
@@ -60,7 +59,7 @@ const ForecastNowcard = ({
       </div>
       <div className='forecast_card_now_Bottom'>
         {/* 비온다면 강수량, 비가 안오면 습도 표시*/}
-        {weatherType === 'Rain' ? (
+        {weatherType === 'Rain' || weatherType === 'Drizzle' ? (
           <div className='forecast_card_now_Bottom_item'>
             <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>
               <WiRain />

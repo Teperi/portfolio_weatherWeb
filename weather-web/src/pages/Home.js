@@ -8,12 +8,13 @@ import { MainHeader, MainPlacesCard, MainErrorCard } from '../components';
 
 import './Home.scss';
 // weather API 및 주소 API 에서 가공된 데이터 가져오기
-import { _getCardLocaInfo, _getNowTime } from '../functions/getData';
+import { _getCardLocaInfo, _getDateString } from '../functions/getData';
 
+const getNowDate = new Date();
 export default class Home extends Component {
   state = {
     isLoaded: false,
-    time: _getNowTime(),
+    time: _getDateString(getNowDate),
     error: null,
     card1: null,
     card2: null,

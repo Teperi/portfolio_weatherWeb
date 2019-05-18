@@ -25,8 +25,7 @@ export const _getForecastNowInfo = async (lat, lon) => {
   };
 };
 
-export const _getNowTime = () => {
-  const date = new Date();
+export const _getDateString = date => {
   const dateText = date.toLocaleString('ko-KR');
   return dateText.length === 23 ? dateText.substr(0, 20) : dateText.substr(0, 21);
 };
@@ -34,8 +33,18 @@ export const _getNowTime = () => {
 // forecast.js 미래 날씨 예측 정보 가저오기
 export const _getForecastNext5Info = async (lat, lon) => {
   const weatherNext5 = await _getWeatherNext5(lat, lon);
-  console.log(weatherNext5);
-  console.log(_changeWCode(weatherNext5.list[0].weather[0].id));
+  const list = weatherNext5.list.map(obj => {
+    const date = new Date(obj.dt * 1000);
+    return {
+      dt: obj.dt * 1000,
+      dt_month: date.getMonth() + 1,
+      dt_day: date.getDate(),
+      dt_hours: date.getHours(),
+      weatherType: _changeWCode(obj.weather[0].id),
+      temp: Math.floor(obj.main.temp)
+    };
+  });
+  return list;
 };
 
 // 메인 페이지 현재 날씨 정보 가져오기
@@ -98,6 +107,7 @@ const _getWeatherNow = async (lat, lon) => {
       process.env.REACT_APP_WEATHER_API_KEY
     }&units=metric`
   ).then(response => response.json());
+  console.log(weather);
   return weather;
 };
 

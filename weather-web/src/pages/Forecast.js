@@ -1,39 +1,45 @@
 import React, { Component } from 'react';
 
 import './Forecast.scss';
-import { _getForecastNowInfo, _getNowTime } from '../functions/getData';
+import { _getForecastNowInfo, _getDateString, _getForecastNext5Info } from '../functions/getData';
 
 import { ForecastHeader, ForecastNowcard, ForecastLinecard, ForecastNext24 } from '../components';
 
-const nowTime = Date.now();
-
 const getWeatherData = async (lat, lon) => {
-  const obj = await _getForecastNowInfo(lat, lon);
-  console.log(obj);
+  const nowWeather = await _getForecastNowInfo(lat, lon);
+  const nextWeather = await _getForecastNext5Info(lat, lon);
   return {
-    address: obj.address,
-    weatherType: obj.weatherType,
-    temp: obj.temp,
-    humidity: obj.humidity,
-    windSpeed: obj.windSpeed,
-    windDeg: obj.windDeg,
-    sunrise: obj.sunrise,
-    sunset: obj.sunset,
-    rain: obj.rain
+    nowWeather: {
+      address: nowWeather.address,
+      weatherType: nowWeather.weatherType,
+      temp: nowWeather.temp,
+      humidity: nowWeather.humidity,
+      windSpeed: nowWeather.windSpeed,
+      windDeg: nowWeather.windDeg,
+      sunrise: nowWeather.sunrise,
+      sunset: nowWeather.sunset,
+      rain: nowWeather.rain
+    },
+    nextWeather
   };
 };
+
+const getNowDate = new Date();
+let time = getNowDate;
+time.setDate(getNowDate.getDate() + 1);
 
 export default class Forecast extends Component {
   state = {
     isLoaded: false,
-    time: _getNowTime(),
+    time: _getDateString(getNowDate),
     error: null,
     nowcard: null
   };
   componentDidMount() {
     getWeatherData(this.props.match.params.lat, this.props.match.params.lon).then(res =>
       this.setState({
-        nowcard: res,
+        nowcard: res.nowWeather,
+        forecastcard: res.nextWeather,
         isLoaded: true
       })
     );
@@ -41,7 +47,7 @@ export default class Forecast extends Component {
 
   render() {
     const state = this.state;
-
+    console.log(state);
     return (
       <div>
         {state.isLoaded ? (
@@ -56,14 +62,17 @@ export default class Forecast extends Component {
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}
               rain={state.nowcard.rain}
-              time={nowTime}
+              time={state.time}
             />
-            <ForecastLinecard weatherType={state.nowcard.weatherType} />
+            <ForecastLinecard text='잠시 후' weatherType={state.forecastcard[0].weatherType} />
             <ForecastNext24
-              weatherType={state.nowcard.weatherType}
+              forecast={state.forecastcard.filter(obj => {
+                return obj.dt <= time;
+              })}
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}
             />
+            <ForecastLinecard text='다음 5일' weatherType={''} />
           </div>
         ) : (
           <div className='forecast'>
