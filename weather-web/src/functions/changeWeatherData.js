@@ -14,7 +14,7 @@ import {
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 // 날씨에 맞는 아이콘 내보내기
-export const WeatherTypeIcon = props => {
+export const WeatherTypeIconWithHours = props => {
   const type = props.type;
   const timeInMs = Date.now();
   if (type === 'Thunderstorm') {
@@ -46,7 +46,7 @@ export const WeatherTypeIcon = props => {
 };
 
 // 날씨에 맞는 카드 및 글씨 색 내보내기
-export const WeatherTypeColor = (type, sunrise, sunset) => {
+export const WeatherTypeColorWithHours = (type, sunrise, sunset) => {
   const timeInMs = Date.now();
   if (type === 'Thunderstorm') {
     return {
@@ -96,6 +96,100 @@ export const WeatherTypeColor = (type, sunrise, sunset) => {
       bgColor: '#EE5E5E',
       textColor: '#f1f1f1'
     };
+  }
+};
+
+export const WeatherTypeIconWithForecast = ({ array }) => {
+  const findArr = ['Rain', 'Drizzle', 'Thunderstorm', 'Snow'];
+
+  const findWeatherType = array.find(obj => {
+    return findArr.includes(obj.weatherType);
+  });
+  console.log('확인중..', findWeatherType);
+  if (findWeatherType === undefined) {
+    if (array[0].weatherType === 'Atmosphere') {
+      return <WiDayHaze />;
+    } else if (array[0].weatherType === 'Clear') {
+      return <WiDaySunny />;
+    } else if (array[0].weatherType === 'Clouds') {
+      return <WiCloud />;
+    } else {
+      console.log('아이콘 에러인데요??');
+      return <FaExclamationTriangle />;
+    }
+  } else {
+    if (findWeatherType.weatherType === 'Thunderstorm') {
+      return <WiThunderstorm />;
+    } else if (findWeatherType.weatherType === 'Drizzle') {
+      return <WiSleet />;
+    } else if (findWeatherType.weatherType === 'Rain') {
+      return <WiRaindrops />;
+    } else if (findWeatherType.weatherType === 'Snow') {
+      return <WiSnow />;
+    } else {
+      console.log('아이콘 에러인데요??');
+      return <FaExclamationTriangle />;
+    }
+  }
+};
+
+export const WeatherTypeColorWithForecast = array => {
+  const findArr = ['Rain', 'Drizzle', 'Thunderstorm', 'Snow'];
+  console.log(array);
+  const findWeatherType = array.find(obj => {
+    return findArr.includes(obj.weatherType);
+  });
+  if (findWeatherType === undefined) {
+    if (array[0].weatherType === 'Atmosphere') {
+      return {
+        bgColor: '#b9c2d0',
+        textColor: '#333'
+      };
+    } else if (array[0].weatherType === 'Clear') {
+      return {
+        bgColor: '#f8bc25',
+        textColor: '#333'
+      };
+    } else if (array[0].weatherType === 'Clouds') {
+      return {
+        bgColor: '#89929f',
+        textColor: '#f1f1f1'
+      };
+    } else {
+      console.log('색 변경 에러인데요??');
+      return {
+        bgColor: '#EE5E5E',
+        textColor: '#f1f1f1'
+      };
+    }
+  } else {
+    if (findWeatherType.weatherType === 'Thunderstorm') {
+      return {
+        bgColor: '#8D23A9',
+        textColor: '#f1f1f1'
+      };
+    } else if (findWeatherType.weatherType === 'Drizzle') {
+      return {
+        bgColor: '#7da9ff',
+        textColor: '#333'
+      };
+    } else if (findWeatherType.weatherType === 'Rain') {
+      return {
+        bgColor: '#457AD1',
+        textColor: '#f1f1f1'
+      };
+    } else if (findWeatherType.weatherType === 'Snow') {
+      return {
+        bgColor: '#FAFAFC',
+        textColor: '#333'
+      };
+    } else {
+      console.log('색 변경 에러인데요??');
+      return {
+        bgColor: '#EE5E5E',
+        textColor: '#f1f1f1'
+      };
+    }
   }
 };
 

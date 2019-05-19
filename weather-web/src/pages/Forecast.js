@@ -3,7 +3,13 @@ import React, { Component } from 'react';
 import './Forecast.scss';
 import { _getForecastNowInfo, _getDateString, _getForecastNext5Info } from '../functions/getData';
 
-import { ForecastHeader, ForecastNowcard, ForecastLinecard, ForecastNext24 } from '../components';
+import {
+  ForecastHeader,
+  ForecastNowcard,
+  ForecastLinecard,
+  ForecastNext24,
+  Forecast5dayscard
+} from '../components';
 
 const getWeatherData = async (lat, lon) => {
   const nowWeather = await _getForecastNowInfo(lat, lon);
@@ -28,7 +34,9 @@ const getNowDate = new Date();
 const year = getNowDate.getFullYear();
 const month = getNowDate.getMonth();
 const day = getNowDate.getDate() + 1;
-const Nextday = new Date(year, month, day, getNowDate.getHours(), getNowDate.getMinutes());
+const hours = getNowDate.getHours();
+const minute = getNowDate.getMinutes();
+const Nextday = new Date(year, month, day, hours, minute);
 console.log(getNowDate);
 console.log(Nextday);
 
@@ -80,6 +88,7 @@ export default class Forecast extends Component {
               sunset={state.nowcard.sunset}
             />
             <ForecastLinecard text='다음 5일' weatherType={''} />
+            <Forecast5dayscard forecast={state.forecastcard} />
           </div>
         ) : (
           <div className='forecast'>

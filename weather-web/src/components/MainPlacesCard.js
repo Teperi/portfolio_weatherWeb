@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { IconContext } from 'react-icons';
 import { WiCelsius } from 'react-icons/wi';
 
-import { WeatherTypeIcon, WeatherTypeColor } from '../functions/changeWeatherData';
+import {
+  WeatherTypeIconWithHours,
+  WeatherTypeColorWithHours
+} from '../functions/changeWeatherData';
 
 import './MainPlacesCard.scss';
 
@@ -11,7 +14,7 @@ import './MainPlacesCard.scss';
 export default class MainPlacesCard extends Component {
   constructor(props) {
     super(props);
-    this.state = WeatherTypeColor(props.weatherType, props.sunrise, props.sunset);
+    this.state = WeatherTypeColorWithHours(props.weatherType, props.sunrise, props.sunset);
   }
 
   render() {
@@ -24,7 +27,7 @@ export default class MainPlacesCard extends Component {
       <div className='place_card' style={bgColor}>
         <div className='place_card_left'>
           <IconContext.Provider value={{ size: '4em' }}>
-            <WeatherTypeIcon
+            <WeatherTypeIconWithHours
               type={this.props.weatherType}
               sunrise={this.props.sunrise}
               sunset={this.props.sunset}

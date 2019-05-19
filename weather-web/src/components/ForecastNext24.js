@@ -6,7 +6,11 @@ import { IconContext } from 'react-icons';
 import { FaCircle } from 'react-icons/fa';
 
 // 날씨데이터에 따른 데이터 가공 함수 모음
-import { WeatherTypeIcon, WeatherTypeColor, WeatherTypeText } from '../functions/changeWeatherData';
+import {
+  WeatherTypeText,
+  WeatherTypeIconWithForecast,
+  WeatherTypeColorWithForecast
+} from '../functions/changeWeatherData';
 
 import './ForecastNext24.scss';
 
@@ -36,13 +40,12 @@ const next24Textloop = arr => {
 };
 
 const ForecastNext24 = ({ forecast, sunrise, sunset }) => {
-  const style = WeatherTypeColor(forecast[0].weatherType, sunrise, sunset);
+  const next24Info = forecast.reduce(forecastReducer, []);
+  const style = WeatherTypeColorWithForecast(next24Info);
   const bgColor = {
     background: style.bgColor,
     color: style.textColor
   };
-  const next24Info = forecast.reduce(forecastReducer, []);
-  console.log(next24Info);
 
   return (
     <div className='forecast_card_next24' style={bgColor}>
@@ -53,7 +56,7 @@ const ForecastNext24 = ({ forecast, sunrise, sunset }) => {
       </IconContext.Provider>
       <div className='forecast_card_next24_left'>
         <IconContext.Provider value={{ size: '3.5em' }}>
-          <WeatherTypeIcon type={forecast[0].weatherType} sunrise={sunrise} sunset={sunset} />
+          <WeatherTypeIconWithForecast array={next24Info} />
         </IconContext.Provider>
       </div>
       <div className='forecast_card_next24_right'>

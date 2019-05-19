@@ -28,6 +28,7 @@ export default class Home extends Component {
         const obj1 = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
         const obj2 = await _getCardLocaInfo(40.71, -74.01);
         const obj3 = await _getCardLocaInfo(48.85, 2.35);
+        const obj4 = await _getCardLocaInfo(55.75, 37.62);
         this.setState({
           card1: {
             lat: position.coords.latitude,
@@ -55,6 +56,15 @@ export default class Home extends Component {
             type: obj3.weatherType,
             sunrise: obj3.sunrise,
             sunset: obj3.sunset
+          },
+          card4: {
+            lat: 55.75,
+            lon: 37.62,
+            address: obj4.address,
+            temp: obj4.temp,
+            type: obj4.weatherType,
+            sunrise: obj4.sunrise,
+            sunset: obj4.sunset
           },
           isLoaded: true
         });
@@ -103,6 +113,16 @@ export default class Home extends Component {
                 temperature={state.card3.temp}
                 sunrise={state.card3.sunrise}
                 sunset={state.card3.sunset}
+              />
+            </NavLink>
+            <NavLink to={`forecast/55.75/37.62`} className='item'>
+              <MainPlacesCard
+                locationTitle={state.card4.address}
+                locationSub='Russia'
+                weatherType={state.card4.type}
+                temperature={state.card4.temp}
+                sunrise={state.card4.sunrise}
+                sunset={state.card4.sunset}
               />
             </NavLink>
             {/* 카드 추가 기능 - 구현 시 사용

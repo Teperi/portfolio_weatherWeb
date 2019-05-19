@@ -1,0 +1,42 @@
+.forecast_card_5days {
+  grid-column: 1;
+  overflow: none;
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding: 16px;
+  &_day {
+    display: flex;
+    box-sizing: border-box;
+    &_left {
+      flex-basis: 25%;
+      padding: 0 0 0 8px;
+    }
+    &_center {
+      flex-basis: 50%;
+      flex-direction: column;
+      &_timeTitle {
+        margin: 8px 0;
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+      &_weatherTitle {
+        margin: 0;
+      }
+    }
+  }
+
+  &_topcircle {
+    position: absolute;
+    background: #2c3e50;
+    border-radius: 50%;
+    padding: 5px;
+    left: 40px;
+    top: 0;
+    transform: translate(0%, -50%);
+    z-index: 1;
+  }
+}

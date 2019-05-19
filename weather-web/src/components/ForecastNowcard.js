@@ -9,8 +9,8 @@ import { FaCircle } from 'react-icons/fa';
 
 // 날씨데이터에 따른 데이터 가공 함수 모음
 import {
-  WeatherTypeIcon,
-  WeatherTypeColor,
+  WeatherTypeIconWithHours,
+  WeatherTypeColorWithHours,
   WeatherTypeText,
   WindDegreeToText,
   millisecondsToTime
@@ -30,7 +30,7 @@ const ForecastNowcard = ({
   rain,
   time
 }) => {
-  const style = WeatherTypeColor(weatherType, sunrise, sunset);
+  const style = WeatherTypeColorWithHours(weatherType, sunrise, sunset);
   const bgColor = {
     background: style.bgColor,
     color: style.textColor
@@ -41,7 +41,7 @@ const ForecastNowcard = ({
         {/* 아이콘 */}
         <div className='forecast_card_now_Top_left'>
           <IconContext.Provider value={{ size: '4em' }}>
-            <WeatherTypeIcon type={weatherType} sunrise={sunrise} sunset={sunset} />
+            <WeatherTypeIconWithHours type={weatherType} sunrise={sunrise} sunset={sunset} />
           </IconContext.Provider>
         </div>
         {/* 날씨 */}
