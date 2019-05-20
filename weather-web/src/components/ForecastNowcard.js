@@ -35,9 +35,12 @@ const ForecastNowcard = ({
     background: style.bgColor,
     color: style.textColor
   };
+  const shadow = {
+    boxShadow: style.shadow
+  };
   return (
     <div className='forecast_card_now' style={bgColor}>
-      <div className='forecast_card_now_Top'>
+      <div className='forecast_card_now_Top' style={shadow}>
         {/* 아이콘 */}
         <div className='forecast_card_now_Top_left'>
           <IconContext.Provider value={{ size: '4em' }}>

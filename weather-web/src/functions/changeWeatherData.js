@@ -51,50 +51,59 @@ export const WeatherTypeColorWithHours = (type, sunrise, sunset) => {
   if (type === 'Thunderstorm') {
     return {
       bgColor: '#8D23A9',
-      textColor: '#f1f1f1'
+      textColor: '#f1f1f1',
+      shadow: '0 0.5px 0.2px #5b0079'
     };
   } else if (type === 'Drizzle') {
     return {
       bgColor: '#7da9ff',
-      textColor: '#333'
+      textColor: '#333',
+      shadow: '0 1px 6px #467acb'
     };
   } else if (type === 'Rain') {
     return {
       bgColor: '#457AD1',
-      textColor: '#f1f1f1'
+      textColor: '#f1f1f1',
+      shadow: '0 1px 6px #004f9f'
     };
   } else if (type === 'Snow') {
     return {
       bgColor: '#FAFAFC',
-      textColor: '#333'
+      textColor: '#333',
+      shadow: '0 1px 6px #c7c7c9'
     };
   } else if (type === 'Atmosphere') {
     return {
       bgColor: '#b9c2d0',
-      textColor: '#333'
+      textColor: '#333',
+      shadow: '0 1px 6px #89929f'
     };
   } else if (type === 'Clear') {
     if (timeInMs >= sunrise && timeInMs <= sunset) {
       return {
         bgColor: '#f8bc25',
-        textColor: '#333'
+        textColor: '#333',
+        shadow: '0 1px 6px #c08c00'
       };
     } else {
       return {
         bgColor: '#575d80',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 1px 6px #2c3453'
       };
     }
   } else if (type === 'Clouds') {
     return {
       bgColor: '#89929f',
-      textColor: '#f1f1f1'
+      textColor: '#f1f1f1',
+      shadow: '0 1px 6px #5c6471'
     };
   } else {
     console.log('색 변경 에러인데요??');
     return {
       bgColor: '#EE5E5E',
-      textColor: '#f1f1f1'
+      textColor: '#f1f1f1',
+      shadow: '0 1px 6px #b62a34'
     };
   }
 };
@@ -143,51 +152,60 @@ export const WeatherTypeColorWithForecast = array => {
     if (array[0].weatherType === 'Atmosphere') {
       return {
         bgColor: '#b9c2d0',
-        textColor: '#333'
+        textColor: '#333',
+        shadow: '0 1px 6px #89929f'
       };
     } else if (array[0].weatherType === 'Clear') {
       return {
         bgColor: '#f8bc25',
-        textColor: '#333'
+        textColor: '#333',
+        shadow: '0 1px 6px #c08c00'
       };
     } else if (array[0].weatherType === 'Clouds') {
       return {
         bgColor: '#89929f',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 1px 6px #5c6471'
       };
     } else {
       console.log('색 변경 에러인데요??');
       return {
         bgColor: '#EE5E5E',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 1px 6px #b62a34'
       };
     }
   } else {
     if (findWeatherType.weatherType === 'Thunderstorm') {
       return {
         bgColor: '#8D23A9',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 0.5px 0.2px #5b0079'
       };
     } else if (findWeatherType.weatherType === 'Drizzle') {
       return {
         bgColor: '#7da9ff',
-        textColor: '#333'
+        textColor: '#333',
+        shadow: '0 1px 6px #467acb'
       };
     } else if (findWeatherType.weatherType === 'Rain') {
       return {
         bgColor: '#457AD1',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 1px 6px #004f9f'
       };
     } else if (findWeatherType.weatherType === 'Snow') {
       return {
         bgColor: '#FAFAFC',
-        textColor: '#333'
+        textColor: '#333',
+        shadow: '0 1px 6px #c7c7c9'
       };
     } else {
       console.log('색 변경 에러인데요??');
       return {
         bgColor: '#EE5E5E',
-        textColor: '#f1f1f1'
+        textColor: '#f1f1f1',
+        shadow: '0 1px 6px #b62a34'
       };
     }
   }
