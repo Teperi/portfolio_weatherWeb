@@ -50,7 +50,6 @@ export const _getForecastNext5Info = async (lat, lon) => {
 // 메인 페이지 현재 날씨 정보 가져오기
 export const _getCardLocaInfo = async (lat, lon) => {
   const weatherNow = await _getWeatherNow(lat, lon);
-  console.log(weatherNow);
   let address = null;
   if (lat >= 33 && lat <= 43 && lon >= 124 && lon <= 132) {
     address = await _getAddr(lat, lon);
@@ -107,7 +106,6 @@ const _getWeatherNow = async (lat, lon) => {
       process.env.REACT_APP_WEATHER_API_KEY
     }&units=metric`
   ).then(response => response.json());
-  console.log(weather);
   return weather;
 };
 

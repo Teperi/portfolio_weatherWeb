@@ -68,7 +68,6 @@ export default class Home extends Component {
           },
           isLoaded: true
         });
-        console.log(this.state);
       },
       error => {
         this.setState({

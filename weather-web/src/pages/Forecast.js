@@ -8,7 +8,7 @@ import {
   ForecastNowcard,
   ForecastLinecard,
   ForecastNext24,
-  Forecast5dayscard
+  Forecast4dayscard
 } from '../components';
 
 const getWeatherData = async (lat, lon) => {
@@ -37,9 +37,6 @@ const day = getNowDate.getDate() + 1;
 const hours = getNowDate.getHours();
 const minute = getNowDate.getMinutes();
 const Nextday = new Date(year, month, day, hours, minute);
-console.log(getNowDate);
-console.log(Nextday);
-
 export default class Forecast extends Component {
   state = {
     isLoaded: false,
@@ -49,8 +46,6 @@ export default class Forecast extends Component {
   };
 
   componentDidMount() {
-    console.log(getNowDate);
-    console.log(Nextday);
     getWeatherData(this.props.match.params.lat, this.props.match.params.lon).then(res =>
       this.setState({
         nowcard: res.nowWeather,
@@ -62,7 +57,6 @@ export default class Forecast extends Component {
 
   render() {
     const state = this.state;
-    console.log(state);
     return (
       <div>
         {state.isLoaded ? (
@@ -87,8 +81,8 @@ export default class Forecast extends Component {
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}
             />
-            <ForecastLinecard text='다음 5일' weatherType={''} />
-            <Forecast5dayscard forecast={state.forecastcard} />
+            <ForecastLinecard text='다음 4일' weatherType={''} />
+            <Forecast4dayscard forecast={state.forecastcard} today={getNowDate} />
           </div>
         ) : (
           <div className='forecast'>

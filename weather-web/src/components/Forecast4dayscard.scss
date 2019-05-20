@@ -1,0 +1,52 @@
+@mixin dayCard() {
+  display: flex;
+  box-sizing: border-box;
+  padding: 16px;
+  &_left {
+    flex-basis: 25%;
+    padding: 0 0 0 8px;
+  }
+  &_center {
+    flex-basis: 50%;
+    flex-direction: column;
+    &_timeTitle {
+      margin: 8px 0;
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    &_weatherTitle {
+      margin: 0;
+    }
+  }
+}
+
+.forecast_card_4days {
+  grid-column: 1;
+  overflow: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  &_dayTop {
+    border-radius: 16px 16px 0 0;
+    @include dayCard();
+  }
+  &_day {
+    @include dayCard();
+  }
+  &_dayBottom {
+    border-radius: 0 0 16px 16px;
+    @include dayCard();
+  }
+
+  &_topcircle {
+    position: absolute;
+    background: #2c3e50;
+    border-radius: 50%;
+    padding: 5px;
+    left: 40px;
+    top: 0;
+    transform: translate(0%, -50%);
+    z-index: 1;
+  }
+}

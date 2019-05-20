@@ -114,7 +114,6 @@ export const WeatherTypeIconWithForecast = ({ array }) => {
   const findWeatherType = array.find(obj => {
     return findArr.includes(obj.weatherType);
   });
-  console.log('확인중..', findWeatherType);
   if (findWeatherType === undefined) {
     if (array[0].weatherType === 'Atmosphere') {
       return <WiDayHaze />;
@@ -144,7 +143,6 @@ export const WeatherTypeIconWithForecast = ({ array }) => {
 
 export const WeatherTypeColorWithForecast = array => {
   const findArr = ['Rain', 'Drizzle', 'Thunderstorm', 'Snow'];
-  console.log(array);
   const findWeatherType = array.find(obj => {
     return findArr.includes(obj.weatherType);
   });

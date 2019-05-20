@@ -22,7 +22,6 @@ export default class MainPlacesCard extends Component {
       background: this.state.bgColor,
       color: this.state.textColor
     };
-    console.log(bgColor);
     return (
       <div className='place_card' style={bgColor}>
         <div className='place_card_left'>
