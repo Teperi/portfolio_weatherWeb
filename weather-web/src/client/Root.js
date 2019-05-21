@@ -4,7 +4,7 @@ import App from '../shared/App';
 
 const Root = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
     </BrowserRouter>
   );
