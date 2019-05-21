@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/weatherweb/static/css/main.1a52a752.chunk.css",
+    "main.js": "/weatherweb/static/js/main.c49667c8.chunk.js",
+    "main.js.map": "/weatherweb/static/js/main.c49667c8.chunk.js.map",
+    "runtime~main.js": "/weatherweb/static/js/runtime~main.996de99b.js",
+    "runtime~main.js.map": "/weatherweb/static/js/runtime~main.996de99b.js.map",
+    "static/js/2.0c8c7e2a.chunk.js": "/weatherweb/static/js/2.0c8c7e2a.chunk.js",
+    "static/js/2.0c8c7e2a.chunk.js.map": "/weatherweb/static/js/2.0c8c7e2a.chunk.js.map",
+    "index.html": "/weatherweb/index.html",
+    "precache-manifest.6d8ca7a7a9d6c31c4798505398a1ae07.js": "/weatherweb/precache-manifest.6d8ca7a7a9d6c31c4798505398a1ae07.js",
+    "service-worker.js": "/weatherweb/service-worker.js",
+    "static/css/main.1a52a752.chunk.css.map": "/weatherweb/static/css/main.1a52a752.chunk.css.map"
+  }
+}
