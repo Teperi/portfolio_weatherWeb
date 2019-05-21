@@ -11,63 +11,131 @@ import './Home.scss';
 import { _getCardLocaInfo, _getDateString } from '../functions/getData';
 
 const getNowDate = new Date();
+const coords = [
+    {
+      lon: 127,
+      lat: 37.583328,
+      address: '서울'
+    },
+    {
+      lon: 126.416107,
+      lat: 37.450001,
+      address: '인천'
+    },
+    {
+      lon: 129.050003,
+      lat: 35.133331,
+      address:'부산'
+    },
+    {
+      lon: 128.550003,
+      lat: 35.799999,
+      address: '대구'
+    },
+    {
+      lon: 127.416672,
+      lat: 36.333328,
+      address:'대전'
+    },
+    {
+      lon: 126.916672,
+      lat: 35.166672,
+      address:'광주'
+    },
+    {
+      lon: 129.266663,
+      lat: 35.566669,
+      address:'울산'
+    },
+   {
+      lon: 126.521942,
+      lat: 33.50972,
+      address: '제주'
+    }
+];
+const cardlist = arr => {
+  const listItems = arr.map(obj => {
+    return (
+      <NavLink key={`${obj.lat}_${obj.lon}`} to={`forecast/${obj.lat}/${obj.lon}`} className='item'>
+        <MainPlacesCard
+          key={`${obj.lat}_${obj.lon}`}
+          locationTitle={obj.address}
+          locationSub={obj.subaddress}
+          weatherType={obj.type}
+          temperature={obj.temp}
+          sunrise={obj.sunrise}
+          sunset={obj.sunset}
+        />
+      </NavLink>
+    );
+  });
+  return (<div className='cardList'>{listItems}</div>);
+};
+
 export default class Home extends Component {
   state = {
     isLoaded: false,
     time: _getDateString(getNowDate),
     error: null,
-    card1: null,
-    card2: null,
-    card3: null
+    card: [],
+    cardCount:9
   };
+
+
+  
 
   componentDidMount() {
     // 현재 위치(좌표) 확인해서 API 에서 가공된 데이터 가져오기
     navigator.geolocation.getCurrentPosition(
       async position => {
-        const obj1 = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
-        const obj2 = await _getCardLocaInfo(40.71, -74.01);
-        const obj3 = await _getCardLocaInfo(48.85, 2.35);
-        const obj4 = await _getCardLocaInfo(55.75, 37.62);
-        this.setState({
-          card1: {
+        for (let index = 0; index < 9; index++) {
+          let obj = null;
+          if(index ===0) {
+
+          obj = await _getCardLocaInfo(position.coords.latitude, position.coords.longitude);
+          this.setState({
+            card :[ {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            address: obj1.address,
-            temp: obj1.temp,
-            type: obj1.weatherType,
-            sunrise: obj1.sunrise,
-            sunset: obj1.sunset
-          },
-          card2: {
-            lat: 40.71,
-            lon: -74.01,
-            address: obj2.address,
-            temp: obj2.temp,
-            type: obj2.weatherType,
-            sunrise: obj2.sunrise,
-            sunset: obj2.sunset
-          },
-          card3: {
-            lat: 48.85,
-            lon: 2.35,
-            address: obj3.address,
-            temp: obj3.temp,
-            type: obj3.weatherType,
-            sunrise: obj3.sunrise,
-            sunset: obj3.sunset
-          },
-          card4: {
-            lat: 55.75,
-            lon: 37.62,
-            address: obj4.address,
-            temp: obj4.temp,
-            type: obj4.weatherType,
-            sunrise: obj4.sunrise,
-            sunset: obj4.sunset
-          },
-          isLoaded: true
-        });
+            address: obj.address,
+            subaddress: '현재 위치',
+            temp: obj.temp,
+            type: obj.weatherType,
+            sunrise: obj.sunrise,
+            sunset: obj.sunset
+            }]
+          })
+          } else if (index === 8) {
+          obj = await _getCardLocaInfo(coords[index-1].lat, coords[index-1].lon);
+          this.setState({
+            card :[...this.state.card, {
+            lat: coords[index-1].lat,
+            lon: coords[index-1].lon,
+            address: coords[index-1].address,
+            subaddress: '대한민국',
+            temp: obj.temp,
+            type: obj.weatherType,
+            sunrise: obj.sunrise,
+            sunset: obj.sunset
+            }],
+            isLoaded:true
+          })
+          } else {
+            obj = await _getCardLocaInfo(coords[index-1].lat, coords[index-1].lon);
+          this.setState({
+            card :[...this.state.card, {
+            lat: coords[index-1].lat,
+            lon: coords[index-1].lon,
+            address: coords[index-1].address,
+            subaddress: '대한민국',
+            temp: obj.temp,
+            type: obj.weatherType,
+            sunrise: obj.sunrise,
+            sunset: obj.sunset
+            }]
+          })
+          }
+        }
       },
       error => {
         this.setState({
@@ -84,46 +152,7 @@ export default class Home extends Component {
         {state.isLoaded ? (
           <div className='list'>
             <MainHeader nowTime={state.time} />
-            <NavLink to={`forecast/${state.card1.lat}/${state.card1.lon}`} className='item'>
-              <MainPlacesCard
-                locationTitle={state.card1.address}
-                locationSub='현재 위치'
-                weatherType={state.card1.type}
-                temperature={state.card1.temp}
-                sunrise={state.card1.sunrise}
-                sunset={state.card1.sunset}
-              />
-            </NavLink>
-            <NavLink to={`forecast/40.71/-74.01`} className='item'>
-              <MainPlacesCard
-                locationTitle={state.card2.address}
-                locationSub='USA'
-                weatherType={state.card2.type}
-                temperature={state.card2.temp}
-                sunrise={state.card2.sunrise}
-                sunset={state.card2.sunset}
-              />
-            </NavLink>
-            <NavLink to={`forecast/48.85/2.35`} className='item'>
-              <MainPlacesCard
-                locationTitle={state.card3.address}
-                locationSub='France'
-                weatherType={state.card3.type}
-                temperature={state.card3.temp}
-                sunrise={state.card3.sunrise}
-                sunset={state.card3.sunset}
-              />
-            </NavLink>
-            <NavLink to={`forecast/55.75/37.62`} className='item'>
-              <MainPlacesCard
-                locationTitle={state.card4.address}
-                locationSub='Russia'
-                weatherType={state.card4.type}
-                temperature={state.card4.temp}
-                sunrise={state.card4.sunrise}
-                sunset={state.card4.sunset}
-              />
-            </NavLink>
+            {cardlist(state.card)}
             {/* 카드 추가 기능 - 구현 시 사용
         <div className='list_card_add'>
         <IconContext.Provider value={{ size: '3em', color: 'white' }}>

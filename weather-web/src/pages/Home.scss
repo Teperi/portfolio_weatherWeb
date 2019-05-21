@@ -1,20 +1,6 @@
 @import '../css/responsiveGrid.scss';
 
 .list {
-  display: grid;
-  padding: 16px 64px;
-  grid-gap: 32px;
-  grid-template-columns: repeat(3, 1fr);
-  @include respond-to('medium') {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 16px 32px;
-    grid-gap: 32px 16px;
-  }
-  @include respond-to('small') {
-    grid-template-columns: auto;
-    padding: 16px;
-    grid-gap: 32px;
-  }
   a {
     text-decoration: none;
   }
@@ -29,5 +15,21 @@
     border: 4px dashed #f1f1f1;
     justify-content: center;
     align-items: center;
+  }
+  .cardList{
+    display: grid;
+  padding: 16px 64px;
+  grid-gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  @include respond-to('medium') {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px 32px;
+    grid-gap: 32px 16px;
+  }
+  @include respond-to('small') {
+    grid-template-columns: auto;
+    padding: 16px;
+    grid-gap: 32px;
+  }
   }
 }

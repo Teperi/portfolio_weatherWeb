@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { Home, Forecast, Test } from '../pages';
+import { Home, Forecast } from '../pages';
 
 class App extends Component {
   render() {
@@ -8,7 +8,6 @@ class App extends Component {
       <div>
         <Route exact path='/' component={Home} />
         <Route path='/forecast/:lat/:lon' component={Forecast} />
-        <Route path='/test' component={Test} />
       </div>
     );
   }

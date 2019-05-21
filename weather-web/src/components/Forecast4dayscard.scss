@@ -18,6 +18,16 @@
       margin: 0;
     }
   }
+  &_right {
+    flex-basis: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    &_tempTitle {
+      margin: 0 0 16px 0;
+      font-size: 1.6em;
+    }
+  }
 }
 
 .forecast_card_4days {

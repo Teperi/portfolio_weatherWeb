@@ -7,6 +7,7 @@ import {
 } from '../functions/changeWeatherData';
 import { IconContext } from 'react-icons';
 import { FaCircle } from 'react-icons/fa';
+import { WiCelsius } from 'react-icons/wi';
 
 import './Forecast4dayscard.scss';
 
@@ -38,7 +39,12 @@ const ForecastTextloop = arr => {
 // TODO: 가장 낮은 온도와 가장 높은 온도 뽑아내기
 const tempReducer = (accumulator, obj, index, array) => {
   if (accumulator[0] === undefined) {
-    accumulator.push(obj.temp);
+    accumulator[0] = obj.temp;
+    accumulator[1] = obj.temp;
+  } else if (accumulator[0] > obj.temp) {
+    accumulator[0] = obj.temp;
+  } else if (accumulator[1] < obj.temp) {
+    accumulator[1] = obj.temp;
   }
   return accumulator;
 };
@@ -55,11 +61,13 @@ const Forecast4dayscard = ({ forecast, today }) => {
     );
   }
 
-  const forecast_dayInfo = forecast_classifi.map(arr => {
+  const forecast_textInfo = forecast_classifi.map(arr => {
     return arr.reduce(forecastReducer, []);
   });
 
-  console.log(forecast_dayInfo);
+  const forecast_tempInfo = forecast_classifi.map(arr => {
+    return arr.reduce(tempReducer, []);
+  });
 
   // 각 날짜별 색 설정
   const bgColor = new Array();
@@ -90,10 +98,16 @@ const Forecast4dayscard = ({ forecast, today }) => {
             내일 ({forecast_classifi[0][0].dt_day}일)
           </p>
           <p className='forecast_card_4days_dayTop_center_weatherTitle'>
-            {ForecastTextloop(forecast_dayInfo[0])}
+            {ForecastTextloop(forecast_textInfo[0])}
           </p>
         </div>
-        <div className='forecast_card_4days_dayTop_right' />
+        <div className='forecast_card_4days_dayTop_right'>
+          <p className='forecast_card_4days_dayTop_right_tempTitle'>
+            {forecast_tempInfo[0][0]}
+            <WiCelsius />| {forecast_tempInfo[0][1]}
+            <WiCelsius />
+          </p>
+        </div>
       </div>
       <div className='forecast_card_4days_day' style={bgColor[1]}>
         <div className='forecast_card_4days_day_left'>
@@ -106,10 +120,16 @@ const Forecast4dayscard = ({ forecast, today }) => {
             모레({forecast_classifi[1][0].dt_day}일)
           </p>
           <p className='forecast_card_4days_day_center_weatherTitle'>
-            {ForecastTextloop(forecast_dayInfo[1])}
+            {ForecastTextloop(forecast_textInfo[1])}
           </p>
         </div>
-        <div className='forecast_card_4days_day_right' />
+        <div className='forecast_card_4days_day_right'>
+          <p className='forecast_card_4days_day_right_tempTitle'>
+            {forecast_tempInfo[1][0]}
+            <WiCelsius />| {forecast_tempInfo[1][1]}
+            <WiCelsius />
+          </p>
+        </div>
       </div>
       <div className='forecast_card_4days_day' style={bgColor[2]}>
         <div className='forecast_card_4days_day_left'>
@@ -119,13 +139,19 @@ const Forecast4dayscard = ({ forecast, today }) => {
         </div>
         <div className='forecast_card_4days_day_center'>
           <p className='forecast_card_4days_day_center_timeTitle'>
-            {forecast_dayInfo[2][0].dt_day}일
+            {forecast_textInfo[2][0].dt_day}일
           </p>
           <p className='forecast_card_4days_day_center_weatherTitle'>
-            {ForecastTextloop(forecast_dayInfo[2])}
+            {ForecastTextloop(forecast_textInfo[2])}
           </p>
         </div>
-        <div className='forecast_card_4days_day_right' />
+        <div className='forecast_card_4days_day_right'>
+          <p className='forecast_card_4days_day_right_tempTitle'>
+            {forecast_tempInfo[2][0]}
+            <WiCelsius />| {forecast_tempInfo[2][1]}
+            <WiCelsius />
+          </p>
+        </div>
       </div>
       <div className='forecast_card_4days_dayBottom' style={bgColor[3]}>
         <div className='forecast_card_4days_dayBottom_left'>
@@ -138,10 +164,16 @@ const Forecast4dayscard = ({ forecast, today }) => {
             {forecast_classifi[3][0].dt_day}일
           </p>
           <p className='forecast_card_4days_dayBottom_center_weatherTitle'>
-            {ForecastTextloop(forecast_dayInfo[3])}
+            {ForecastTextloop(forecast_textInfo[3])}
           </p>
         </div>
-        <div className='forecast_card_4days_dayBottom_right' />
+        <div className='forecast_card_4days_dayBottom_right'>
+          <p className='forecast_card_4days_dayBottom_right_tempTitle'>
+            {forecast_tempInfo[3][0]}
+            <WiCelsius />| {forecast_tempInfo[3][1]}
+            <WiCelsius />
+          </p>
+        </div>
       </div>
     </div>
   );

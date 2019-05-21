@@ -2,16 +2,10 @@
 
 .MainHeader {
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
+  margin:  16px auto;
   display: flex;
   align-items: center;
-  grid-area: 1 / 1 / 2 / span 3;
-  @include respond-to('medium') {
-    grid-area: 1 / 1 / 2 / span 2;
-  }
-  @include respond-to('small') {
-    grid-area: 1 / 1 / 2 / 2;
-  }
   &_text {
     margin-left: 16px;
     font-size: 1.2em;
