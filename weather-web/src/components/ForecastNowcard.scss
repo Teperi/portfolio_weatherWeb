@@ -43,10 +43,12 @@
     }
     &_right {
       flex-basis: 25%;
+      display: flex;
+      justify-content: flex-end;
       .temperatureTitle {
         margin: 0;
         font-size: 2.5em;
-        text-align: center;
+        text-align: end;
       }
     }
   }
@@ -71,12 +73,14 @@
       .numberText1,
       .numberText2,
       .numberText3 {
+        font-size: 0.9em;
         margin: 0;
         font-weight: 600;
       }
       .subText1,
       .subText2,
       .subText3 {
+        font-size: 0.9em;
         margin: 8px 0;
       }
     }

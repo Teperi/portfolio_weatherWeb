@@ -56,7 +56,6 @@ export const _getCardLocaInfo = async (lat, lon) => {
   } else {
     address = weatherNow.name;
   }
-  console.log(weatherNow)
   return {
     address: address,
     temp: Math.floor(weatherNow.main.temp),

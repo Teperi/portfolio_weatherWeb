@@ -3,7 +3,7 @@ import React from 'react';
 // Icon 설정 파일
 import { IconContext } from 'react-icons';
 // 날씨에 맞는 아이콘 가져오기
-import { WiCelsius, WiRain, WiHumidity, WiStrongWind, WiSunrise, WiSunset } from 'react-icons/wi';
+import { WiRain, WiHumidity, WiStrongWind, WiSunrise, WiSunset } from 'react-icons/wi';
 // 디자인 circle 가져오기
 import { FaCircle } from 'react-icons/fa';
 
@@ -54,10 +54,7 @@ const ForecastNowcard = ({
         </div>
         {/* 온도 */}
         <div className='forecast_card_now_Top_right'>
-          <p className='temperatureTitle'>
-            {temp}
-            <WiCelsius />
-          </p>
+          <p className='temperatureTitle'>{temp}˚</p>
         </div>
       </div>
       <div className='forecast_card_now_Bottom'>

@@ -87,7 +87,16 @@ export default class Forecast extends Component {
         ) : (
           <div className='forecast'>
             <ForecastHeader address='' nowTime={state.time} />
-            <p className='loadingText'>로딩중</p>
+            <p
+              style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: 'auto',
+                gridArea: '2 / 1 / 3 / span2'
+              }}
+            >
+              로딩중...
+            </p>
           </div>
         )}
       </div>

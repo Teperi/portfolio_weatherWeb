@@ -22,10 +22,11 @@
     flex-basis: 25%;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
     &_tempTitle {
-      margin: 0 0 16px 0;
-      font-size: 1.6em;
+      margin: 8px 0;
+      font-size: 1.5em;
+      align-self: flex-start;
+      text-align: end;
     }
   }
 }

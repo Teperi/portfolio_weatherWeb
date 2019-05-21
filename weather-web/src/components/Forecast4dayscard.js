@@ -7,7 +7,6 @@ import {
 } from '../functions/changeWeatherData';
 import { IconContext } from 'react-icons';
 import { FaCircle } from 'react-icons/fa';
-import { WiCelsius } from 'react-icons/wi';
 
 import './Forecast4dayscard.scss';
 
@@ -36,7 +35,7 @@ const ForecastTextloop = arr => {
     .toString();
 };
 
-// TODO: 가장 낮은 온도와 가장 높은 온도 뽑아내기
+// 가장 낮은 온도와 가장 높은 온도 뽑아내기
 const tempReducer = (accumulator, obj, index, array) => {
   if (accumulator[0] === undefined) {
     accumulator[0] = obj.temp;
@@ -51,7 +50,7 @@ const tempReducer = (accumulator, obj, index, array) => {
 
 const Forecast4dayscard = ({ forecast, today }) => {
   // 넘어온 날씨 예보 정보를 날짜별로 추리기
-  const forecast_classifi = new Array();
+  let forecast_classifi = [];
   for (let i = 1; i < 5; i++) {
     const dayCheck = today.getDate() + i;
     forecast_classifi.push(
@@ -70,7 +69,7 @@ const Forecast4dayscard = ({ forecast, today }) => {
   });
 
   // 각 날짜별 색 설정
-  const bgColor = new Array();
+  let bgColor = [];
   for (const arr of forecast_classifi) {
     const style = WeatherTypeColorWithForecast(arr);
     bgColor.push({
@@ -103,9 +102,7 @@ const Forecast4dayscard = ({ forecast, today }) => {
         </div>
         <div className='forecast_card_4days_dayTop_right'>
           <p className='forecast_card_4days_dayTop_right_tempTitle'>
-            {forecast_tempInfo[0][0]}
-            <WiCelsius />| {forecast_tempInfo[0][1]}
-            <WiCelsius />
+            {forecast_tempInfo[0][0]}˚| {forecast_tempInfo[0][1]}˚&nbsp;
           </p>
         </div>
       </div>
@@ -125,9 +122,7 @@ const Forecast4dayscard = ({ forecast, today }) => {
         </div>
         <div className='forecast_card_4days_day_right'>
           <p className='forecast_card_4days_day_right_tempTitle'>
-            {forecast_tempInfo[1][0]}
-            <WiCelsius />| {forecast_tempInfo[1][1]}
-            <WiCelsius />
+            {forecast_tempInfo[1][0]}˚| {forecast_tempInfo[1][1]}˚&nbsp;
           </p>
         </div>
       </div>
@@ -147,9 +142,7 @@ const Forecast4dayscard = ({ forecast, today }) => {
         </div>
         <div className='forecast_card_4days_day_right'>
           <p className='forecast_card_4days_day_right_tempTitle'>
-            {forecast_tempInfo[2][0]}
-            <WiCelsius />| {forecast_tempInfo[2][1]}
-            <WiCelsius />
+            {forecast_tempInfo[2][0]}˚| {forecast_tempInfo[2][1]}˚&nbsp;
           </p>
         </div>
       </div>
@@ -169,9 +162,7 @@ const Forecast4dayscard = ({ forecast, today }) => {
         </div>
         <div className='forecast_card_4days_dayBottom_right'>
           <p className='forecast_card_4days_dayBottom_right_tempTitle'>
-            {forecast_tempInfo[3][0]}
-            <WiCelsius />| {forecast_tempInfo[3][1]}
-            <WiCelsius />
+            {forecast_tempInfo[3][0]}˚| {forecast_tempInfo[3][1]}˚&nbsp;
           </p>
         </div>
       </div>

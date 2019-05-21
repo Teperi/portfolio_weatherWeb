@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { IconContext } from 'react-icons';
-import { WiCelsius } from 'react-icons/wi';
 
 import {
   WeatherTypeIconWithHours,
@@ -36,10 +35,7 @@ export default class MainPlacesCard extends Component {
           <p className='location_sub'>{this.props.locationSub}</p>
         </div>
         <div className='place_card_right'>
-          <p className='temperature'>
-            {this.props.temperature}
-            <WiCelsius />
-          </p>
+          <p className='temperature'>{this.props.temperature}˚</p>
         </div>
       </div>
     );

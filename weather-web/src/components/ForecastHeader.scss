@@ -13,9 +13,17 @@
   &_text {
     margin-left: 16px;
     font-size: 1.2em;
+    @include respond-to('small') {
+      font-size: 1em;
+    }
   }
   &_time {
     margin-left: auto;
     margin-right: 4px;
+    text-align: center;
+    @include respond-to('small') {
+      font-size: 0.8em;
+      max-width: 80px;
+    }
   }
 }
