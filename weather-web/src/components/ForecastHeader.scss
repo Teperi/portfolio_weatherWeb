@@ -20,7 +20,7 @@
   &_time {
     margin-left: auto;
     margin-right: 4px;
-    text-align: center;
+    text-align: end;
     @include respond-to('small') {
       font-size: 0.8em;
       max-width: 80px;
