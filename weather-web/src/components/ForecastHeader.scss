@@ -20,10 +20,10 @@
   &_time {
     margin-left: auto;
     margin-right: 4px;
-    text-align: end;
+    text-align: center;
     @include respond-to('small') {
-      font-size: 0.8em;
-      max-width: 80px;
+      font-size: 0.9em;
+      max-width: 90px;
     }
   }
 }
