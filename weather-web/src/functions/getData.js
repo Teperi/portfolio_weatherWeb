@@ -41,7 +41,8 @@ export const _getForecastNext5Info = async (lat, lon) => {
       dt_day: date.getDate(),
       dt_hours: date.getHours(),
       weatherType: _changeWCode(obj.weather[0].id),
-      temp: Math.floor(obj.main.temp)
+      temp: Math.floor(obj.main.temp),
+      rain: obj.rain === undefined ? 0 : obj.rain['3h']
     };
   });
   return list;

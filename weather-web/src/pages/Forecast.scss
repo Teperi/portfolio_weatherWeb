@@ -134,4 +134,11 @@
       }
     }
   }
+  &_chart {
+    grid-area: 2 / 2 / span 5 / 3;
+    @include respond-to('small') {
+      margin-top: 16px;
+      grid-area: 11 / 1 / 12 / 2;
+    }
+  }
 }

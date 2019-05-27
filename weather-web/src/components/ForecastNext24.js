@@ -104,7 +104,7 @@ const next24Textloop = arr => {
       } else if (value.dt_hours === 12) {
         return { twoPeriods: '오후', day: value.dt_day, hours: 12 };
       } else {
-        return { twoPeriods: '오전', day: value.dt_day, hours: value.dt_hours - 12 };
+        return { twoPeriods: '오후', day: value.dt_day, hours: value.dt_hours - 12 };
       }
     });
 
@@ -115,11 +115,13 @@ const next24Textloop = arr => {
         } else if (index < weatherTime.length - 1) {
           if (value.dt_day !== weatherTime[index - 1].day) {
             return ` 내일 ${weatherTime[index].twoPeriods} ${weatherTime[index].hours}시 ~ ${
-              weatherTime[index].day !== weatherTime[index + 1].day
-                ? `내일 ${weatherTime[index + 1].twoPeriods}`
-                : `${weatherTime[index].twoPeriods === weatherTime[index + 1].twoPeriods} ? `` : ${
-                    weatherTime[index + 1].twoPeriods
+              weatherTime[index].day === weatherTime[index + 1].day
+                ? `${
+                    weatherTime[index].twoPeriods === weatherTime[index + 1].twoPeriods
+                      ? ``
+                      : `${weatherTime[index + 1].twoPeriods}`
                   }`
+                : `${weatherTime[index + 1].twoPeriods}`
             } ${weatherTime[index + 1].hours}시 사이 ${WeatherTypeText(value.weatherType)}`;
           } else {
             return ` ${weatherTime[index].twoPeriods} ${weatherTime[index].hours}시 ~ ${

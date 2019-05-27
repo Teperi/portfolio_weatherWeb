@@ -7,3 +7,4 @@ export { default as ForecastNowcard } from './ForecastNowcard';
 export { default as ForecastLinecard } from './ForecastLinecard';
 export { default as ForecastNext24 } from './ForecastNext24';
 export { default as Forecast4dayscard } from './Forecast4dayscard';
+export { default as ForecastChart } from './ForecastChart';

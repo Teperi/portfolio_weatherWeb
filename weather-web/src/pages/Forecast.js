@@ -8,7 +8,8 @@ import {
   ForecastNowcard,
   ForecastLinecard,
   ForecastNext24,
-  Forecast4dayscard
+  Forecast4dayscard,
+  ForecastChart
 } from '../components';
 
 const getWeatherData = async (lat, lon) => {
@@ -83,6 +84,11 @@ export default class Forecast extends Component {
             />
             <ForecastLinecard text='다음 4일' weatherType={''} />
             <Forecast4dayscard forecast={state.forecastcard} today={getNowDate} />
+            <ForecastChart
+              forecast={state.forecastcard.filter(value => {
+                return value.dt <= Nextday;
+              })}
+            />
           </div>
         ) : (
           <div className='forecast'>
