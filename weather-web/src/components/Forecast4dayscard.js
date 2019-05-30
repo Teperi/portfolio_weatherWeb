@@ -22,7 +22,6 @@ const forecastReducer = (accumulator, value, index, array) => {
 
 // 24시간동안 감지된 날씨 변화를 텍스트로 바꾸기
 const ForecastTextloop = arr => {
-  console.log(arr);
   if (arr.length === 1) {
     return WeatherTypeText(arr[0].weatherType);
   } else if (arr.length === 2) {
@@ -152,10 +151,18 @@ const tempReducer = (accumulator, obj, index, array) => {
 };
 
 const Forecast4dayscard = ({ forecast, today }) => {
+  console.log('에러확인 여기 몇개나 있어?', forecast);
   // 넘어온 날씨 예보 정보를 날짜별로 추리기
   let forecast_classifi = [];
   for (let i = 1; i < 5; i++) {
-    const dayCheck = today.getDate() + i;
+    const lastday = new Date(today.getYear(), today.getMonth(), 0).getDate();
+    let dayCheck;
+    const dayCount = today.getDate() + i;
+    if (dayCount > lastday) {
+      dayCheck = dayCount - lastday;
+    } else {
+      dayCheck = dayCount;
+    }
     forecast_classifi.push(
       forecast.filter(obj => {
         return obj.dt_day === dayCheck;
