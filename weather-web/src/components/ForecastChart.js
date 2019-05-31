@@ -19,6 +19,29 @@ export default class ForecastChart extends Component {
       data: {
         datasets: [
           {
+            type: 'bar',
+            label: '강수량',
+            data: this.props.forecast.map(obj => {
+              return obj.rain;
+            }),
+            fill: false,
+            backgroundColor: '#457AD1',
+            borderColor: '#457AD1',
+            hoverBackgroundColor: '#457AD1',
+            hoverBorderColor: '#457AD1',
+            yAxisID: 'y-axis-2',
+            datalabels: {
+              display: true,
+              align: 'top',
+              anchor: 'end',
+              backgroundColor: '#457AD1',
+              borderColor: '#457AD1',
+              borderRadius: 4,
+              borderWidth: 2,
+              color: '#f1f1f1'
+            }
+          },
+          {
             type: 'line',
             label: '기온',
             data: this.props.forecast.map(obj => {
@@ -41,29 +64,6 @@ export default class ForecastChart extends Component {
               borderRadius: 4,
               borderWidth: 2,
               color: '#333'
-            }
-          },
-          {
-            type: 'bar',
-            label: '강수량',
-            data: this.props.forecast.map(obj => {
-              return obj.rain;
-            }),
-            fill: false,
-            backgroundColor: '#457AD1',
-            borderColor: '#457AD1',
-            hoverBackgroundColor: '#457AD1',
-            hoverBorderColor: '#457AD1',
-            yAxisID: 'y-axis-2',
-            datalabels: {
-              display: true,
-              align: 'top',
-              anchor: 'end',
-              backgroundColor: '#457AD1',
-              borderColor: '#457AD1',
-              borderRadius: 4,
-              borderWidth: 2,
-              color: '#f1f1f1'
             }
           }
         ]
@@ -124,8 +124,14 @@ export default class ForecastChart extends Component {
               }
             },
             {
+              type: 'linear',
               display: false,
-              id: 'y-axis-2'
+              position: 'right',
+              id: 'y-axis-2',
+              ticks: {
+                suggestedMin: 50,
+                suggestedMax: 100
+              }
             }
           ]
         }
