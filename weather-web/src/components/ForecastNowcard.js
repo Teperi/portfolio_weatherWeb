@@ -91,6 +91,7 @@ const ForecastNowcard = ({
           <p className='numberText2'>{windSpeed} m/s</p>
           <p className='subText2'>{WindDegreeToText(windDeg)}</p>
         </div>
+        
         {time >= sunrise && time <= sunset ? (
           <div className='forecast_card_now_Bottom_item'>
             <IconContext.Provider value={{ size: '2.5em', className: 'nowBottom_icon' }}>

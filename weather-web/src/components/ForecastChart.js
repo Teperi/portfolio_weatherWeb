@@ -14,7 +14,6 @@ const legendOpts = {
 export default class ForecastChart extends Component {
   constructor(props) {
     super(props);
-    console.log('데이터 확인', this.props);
     this.state = {
       data: {
         datasets: [

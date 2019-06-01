@@ -26,7 +26,6 @@ const forecastReducer = (accumulator, value, index, array) => {
 
 // 24시간동안 감지된 날씨 변화를 텍스트로 바꾸기
 const next24Textloop = arr => {
-  console.log(arr);
   if (arr.length === 1) {
     return WeatherTypeText(arr[0].weatherType);
   } else if (arr.length === 2) {

@@ -23,7 +23,7 @@
     text-align: center;
     @include respond-to('small') {
       font-size: 0.9em;
-      max-width: 90px;
+      max-width: 80px;
     }
   }
 }

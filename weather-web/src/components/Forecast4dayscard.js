@@ -151,7 +151,6 @@ const tempReducer = (accumulator, obj, index, array) => {
 };
 
 const Forecast4dayscard = ({ forecast, today }) => {
-  console.log('에러확인 여기 몇개나 있어?', forecast);
   // 넘어온 날씨 예보 정보를 날짜별로 추리기
   let forecast_classifi = [];
   for (let i = 1; i < 5; i++) {

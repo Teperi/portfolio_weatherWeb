@@ -72,7 +72,7 @@ export default class Forecast extends Component {
               sunrise={state.nowcard.sunrise}
               sunset={state.nowcard.sunset}
               rain={state.nowcard.rain}
-              time={state.time}
+              time={getNowDate.getTime()}
             />
             <ForecastLinecard text='잠시 후' weatherType={state.forecastcard[0].weatherType} />
             <ForecastNext24

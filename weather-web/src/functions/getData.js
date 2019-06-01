@@ -27,7 +27,28 @@ export const _getForecastNowInfo = async (lat, lon) => {
 
 export const _getDateString = date => {
   const dateText = date.toLocaleString('ko-KR');
-  return dateText.length === 23 ? dateText.substr(0, 20) : dateText.substr(0, 21);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  let hoursText;
+  if(hours === 0) {
+    hoursText = `오전 12:`;
+  } else if (hours < 10) {
+    hoursText = `오전 0${hours}:`;
+  } else if (hours < 12) {
+    hoursText = `오전 ${hours}:`;
+  } else if (hours === 12) {
+    hoursText = `오후 12:`;
+  } else if (hours < 22) {
+    hoursText = `오후 0${hours - 12}:`;
+  } else {
+    hoursText = `오후 0${hours - 12}:`;
+  }
+  
+  if (minutes <10) {
+    return `${dateText.substr(0, 11)} ${hoursText}0${minutes}`;
+  } else {
+    return `${dateText.substr(0, 11)} ${hoursText}${minutes}`;
+  }
 };
 
 // forecast.js 미래 날씨 예측 정보 가저오기
