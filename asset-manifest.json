@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/portfolio_weatherWeb/static/css/main.5c398164.chunk.css",
-    "main.js": "/portfolio_weatherWeb/static/js/main.807c10f9.chunk.js",
-    "main.js.map": "/portfolio_weatherWeb/static/js/main.807c10f9.chunk.js.map",
+    "main.css": "/portfolio_weatherWeb/static/css/main.4d5658cb.chunk.css",
+    "main.js": "/portfolio_weatherWeb/static/js/main.1fb7ad81.chunk.js",
+    "main.js.map": "/portfolio_weatherWeb/static/js/main.1fb7ad81.chunk.js.map",
     "runtime~main.js": "/portfolio_weatherWeb/static/js/runtime~main.7530bf97.js",
     "runtime~main.js.map": "/portfolio_weatherWeb/static/js/runtime~main.7530bf97.js.map",
-    "static/js/2.432ab2e4.chunk.js": "/portfolio_weatherWeb/static/js/2.432ab2e4.chunk.js",
-    "static/js/2.432ab2e4.chunk.js.map": "/portfolio_weatherWeb/static/js/2.432ab2e4.chunk.js.map",
+    "static/js/2.8f5524a9.chunk.js": "/portfolio_weatherWeb/static/js/2.8f5524a9.chunk.js",
+    "static/js/2.8f5524a9.chunk.js.map": "/portfolio_weatherWeb/static/js/2.8f5524a9.chunk.js.map",
     "index.html": "/portfolio_weatherWeb/index.html",
-    "precache-manifest.e1add2ebb736d45769d3f6596e8c0caf.js": "/portfolio_weatherWeb/precache-manifest.e1add2ebb736d45769d3f6596e8c0caf.js",
+    "precache-manifest.a63d270c4b3c5ea9c118e927868cc167.js": "/portfolio_weatherWeb/precache-manifest.a63d270c4b3c5ea9c118e927868cc167.js",
     "service-worker.js": "/portfolio_weatherWeb/service-worker.js",
-    "static/css/main.5c398164.chunk.css.map": "/portfolio_weatherWeb/static/css/main.5c398164.chunk.css.map"
+    "static/css/main.4d5658cb.chunk.css.map": "/portfolio_weatherWeb/static/css/main.4d5658cb.chunk.css.map"
   }
 }

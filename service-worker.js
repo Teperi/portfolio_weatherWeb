@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/portfolio_weatherWeb/precache-manifest.e1add2ebb736d45769d3f6596e8c0caf.js"
+  "/portfolio_weatherWeb/precache-manifest.a63d270c4b3c5ea9c118e927868cc167.js"
 );
 
 self.addEventListener('message', (event) => {
