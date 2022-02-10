@@ -5,7 +5,7 @@
   "dependencies": {
     "chart.js": "^2.8.0",
     "chartjs-plugin-datalabels": "^0.6.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
